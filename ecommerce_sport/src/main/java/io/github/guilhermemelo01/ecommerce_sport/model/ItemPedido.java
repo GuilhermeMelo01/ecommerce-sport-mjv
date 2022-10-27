@@ -3,7 +3,6 @@ package io.github.guilhermemelo01.ecommerce_sport.model;
 import javax.persistence.*;
 import java.io.Serial;
 import java.io.Serializable;
-import java.math.BigDecimal;
 
 @Entity
 public class ItemPedido implements Serializable {
@@ -16,8 +15,6 @@ public class ItemPedido implements Serializable {
     private Integer id;
     @Column(nullable = false)
     private Integer quantidade;
-    @Column(nullable = false)
-    private BigDecimal preco;
 
     @ManyToOne
     @JoinColumn(name = "pedido_id")
@@ -41,14 +38,6 @@ public class ItemPedido implements Serializable {
 
     public void setQuantidade(Integer quantidade) {
         this.quantidade = quantidade;
-    }
-
-    public BigDecimal getPreco() {
-        return preco;
-    }
-
-    public void setPreco(BigDecimal preco) {
-        this.preco = preco;
     }
 
     public Pedido getPedido() {
