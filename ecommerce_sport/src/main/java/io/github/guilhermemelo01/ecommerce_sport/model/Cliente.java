@@ -1,10 +1,16 @@
 package io.github.guilhermemelo01.ecommerce_sport.model;
 
 import javax.persistence.*;
+import java.io.Serial;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Cliente implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,6 +29,9 @@ public class Cliente implements Serializable {
 
     @Embedded
     private Enderenco enderenco;
+
+    @OneToMany(mappedBy = "cliente")
+    private List<Pedido> pedidos = new ArrayList<>();
 
     public Integer getId() {
         return id;
@@ -70,5 +79,13 @@ public class Cliente implements Serializable {
 
     public void setEnderenco(Enderenco enderenco) {
         this.enderenco = enderenco;
+    }
+
+    public List<Pedido> getPedidos() {
+        return pedidos;
+    }
+
+    public void setPedidos(List<Pedido> pedidos) {
+        this.pedidos = pedidos;
     }
 }

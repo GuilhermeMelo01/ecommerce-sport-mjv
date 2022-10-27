@@ -2,9 +2,14 @@ package io.github.guilhermemelo01.ecommerce_sport.model;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import java.io.Serial;
+import java.io.Serializable;
 
 @Embeddable
-public class Enderenco {
+public class Enderenco implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = 1L;
 
     @Column(name = "end_logradouro", length = 50, nullable = false)
     private String logradouro;
