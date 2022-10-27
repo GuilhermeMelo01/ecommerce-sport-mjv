@@ -1,15 +1,11 @@
 package io.github.guilhermemelo01.ecommerce_sport.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.github.guilhermemelo01.ecommerce_sport.enun.Categoria;
 
 import javax.persistence.*;
 import java.io.Serial;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 @Entity
 public class Produto implements Serializable {
@@ -27,9 +23,10 @@ public class Produto implements Serializable {
     @Column(nullable = false)
     private BigDecimal preco;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "produto")
-    private Set<ItemPedido> itens = new HashSet<>();
+    private Integer categoria; //Quero apenas o cod da categoria
+
+    @OneToOne(mappedBy = "produto") // Mapeamento 1 para 1
+    private Pedido pedido;
 
     public Integer getId() {
         return id;
@@ -55,20 +52,19 @@ public class Produto implements Serializable {
         this.preco = preco;
     }
 
-    public Set<ItemPedido> getItens() {
-        return itens;
+    public Categoria getCategoria(){
+        return Categoria.toEnum(categoria);
     }
 
-    public void setItens(Set<ItemPedido> itens) {
-        this.itens = itens;
+    public void setCategoria(Categoria categoria){
+        this.categoria = categoria.getCod();
     }
 
-    @JsonIgnore
-    public List<Pedido> getPedido(){
-        List<Pedido> lista = new ArrayList<>();
-        for(ItemPedido iten: itens){
-            lista.add(iten.getPedido());
-        }
-        return lista;
+    public Pedido getPedido() {
+        return pedido;
+    }
+
+    public void setPedido(Pedido pedido) {
+        this.pedido = pedido;
     }
 }

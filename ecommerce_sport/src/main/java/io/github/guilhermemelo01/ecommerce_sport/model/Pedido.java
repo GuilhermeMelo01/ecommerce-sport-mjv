@@ -1,14 +1,13 @@
 package io.github.guilhermemelo01.ecommerce_sport.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.io.Serial;
 import java.io.Serializable;
-import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Pedido implements Serializable {
@@ -20,15 +19,36 @@ public class Pedido implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @JsonFormat(pattern = "dd/MM/yyyy")
-    private LocalDate dataPedido;
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
+    private LocalDateTime dataPedido;
+
+    @Column(nullable = false)
+    private Integer quantidade;
 
     @ManyToOne
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
 
-    @OneToMany(mappedBy = "pedido")
-    private Set<ItemPedido> itemPedido = new HashSet<>();
+    @OneToOne
+    @JoinColumn(name = "produto_id")
+    private Produto produto;
+
+    @OneToOne
+    @JoinColumn(name = "pagamento_id")
+    private Pagamento pagamento;
+
+    public Pedido() {
+    }
+
+    public Pedido(Integer id, LocalDateTime dataPedido, Integer quantidade, Cliente cliente,
+                  Produto produto, Pagamento pagamento) {
+        this.id = id;
+        this.dataPedido = dataPedido;
+        this.quantidade = quantidade;
+        this.cliente = cliente;
+        this.produto = produto;
+        this.pagamento = pagamento;
+    }
 
     public Integer getId() {
         return id;
@@ -38,11 +58,11 @@ public class Pedido implements Serializable {
         this.id = id;
     }
 
-    public LocalDate getDataPedido() {
+    public LocalDateTime getDataPedido() {
         return dataPedido;
     }
 
-    public void setDataPedido(LocalDate dataPedido) {
+    public void setDataPedido(LocalDateTime dataPedido) {
         this.dataPedido = dataPedido;
     }
 
@@ -54,11 +74,27 @@ public class Pedido implements Serializable {
         this.cliente = cliente;
     }
 
-    public Set<ItemPedido> getItemPedido() {
-        return itemPedido;
+    public Produto getProduto() {
+        return produto;
     }
 
-    public void setItemPedido(Set<ItemPedido> itemPedido) {
-        this.itemPedido = itemPedido;
+    public void setProduto(Produto produto) {
+        this.produto = produto;
+    }
+
+    public Integer getQuantidade() {
+        return quantidade;
+    }
+
+    public void setQuantidade(Integer quantidade) {
+        this.quantidade = quantidade;
+    }
+
+    public Pagamento getPagamento() {
+        return pagamento;
+    }
+
+    public void setPagamento(Pagamento pagamento) {
+        this.pagamento = pagamento;
     }
 }
