@@ -1,5 +1,7 @@
 package io.github.guilhermemelo01.ecommerce_sport.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serial;
 import java.io.Serializable;
@@ -30,6 +32,7 @@ public class Cliente implements Serializable {
     @Embedded
     private Enderenco enderenco;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "cliente")
     private List<Pedido> pedidos = new ArrayList<>();
 
