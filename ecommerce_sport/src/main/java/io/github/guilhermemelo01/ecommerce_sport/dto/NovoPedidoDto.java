@@ -8,17 +8,10 @@ public class NovoPedidoDto {
 
     private Integer idCliente;
     private Integer idProduto;
-    private List<ItemPedido> itemPedido;
+    private Integer tipoPagamento;
     private Integer quantidade;
 
     public NovoPedidoDto() {
-    }
-
-    public NovoPedidoDto(Integer idCliente, Integer idProduto, List<ItemPedido> itemPedido, Integer quantidade) {
-        this.idCliente = idCliente;
-        this.idProduto = idProduto;
-        this.itemPedido = itemPedido;
-        this.quantidade = quantidade;
     }
 
     public Integer getIdCliente() {
@@ -37,12 +30,12 @@ public class NovoPedidoDto {
         this.idProduto = idProduto;
     }
 
-    public List<ItemPedido> getItemPedido() {
-        return itemPedido;
+    public Integer getTipoPagamento() {
+        return tipoPagamento;
     }
 
-    public void setItemPedido(List<ItemPedido> itemPedido) {
-        this.itemPedido = itemPedido;
+    public void setTipoPagamento(Integer tipoPagamento) {
+        this.tipoPagamento = tipoPagamento;
     }
 
     public Integer getQuantidade() {

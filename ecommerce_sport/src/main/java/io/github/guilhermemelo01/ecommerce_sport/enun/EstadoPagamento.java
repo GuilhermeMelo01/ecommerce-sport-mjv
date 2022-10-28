@@ -26,13 +26,11 @@ public enum EstadoPagamento {
         if (cod == null) {
             return null;
         }
-
         for (EstadoPagamento estadoPagamento: EstadoPagamento.values()){
             if (cod.equals(estadoPagamento.getCod())){
                 return estadoPagamento;
             }
         }
-
         throw new IllegalArgumentException("Value is not invalid! "+ cod);
     }
 }

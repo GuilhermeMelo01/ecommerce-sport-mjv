@@ -24,11 +24,11 @@ public class PedidoController {
         return ResponseEntity.ok().body(pedido);
     }
 
-//    @RequestMapping(method = RequestMethod.POST)
-//    public ResponseEntity<Void> fazerPedido(@RequestBody NovoPedidoDto pedidoDto){
-//        Pedido pedido = pedidoService.fazerPedido(pedidoDto);
-//        URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
-//                .path("{/id}").buildAndExpand(pedido.getId()).toUri();
-//        return ResponseEntity.created(uri).build();
-//    }
+    @RequestMapping(method = RequestMethod.POST)
+    public ResponseEntity<Void> fazerPedido(@RequestBody NovoPedidoDto pedidoDto){
+        Pedido pedido = pedidoService.fazerPedido(pedidoDto);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
+                .path("{/id}").buildAndExpand(pedido.getId()).toUri();
+        return ResponseEntity.created(uri).build();
+    }
 }

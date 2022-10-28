@@ -6,7 +6,8 @@ public enum Categoria {
     FUTEBOL(2, "Futebol"),
     NATACAO(3, "Natação"),
     VOLEI(4, "Vôlei"),
-    BASEBALL(3, "Baseball");
+    BASEBALL(5, "Baseball"),
+    ARTES_MARCIAIS(6, "Artes Marciais");
 
     private final Integer cod;
     private final String descricao;

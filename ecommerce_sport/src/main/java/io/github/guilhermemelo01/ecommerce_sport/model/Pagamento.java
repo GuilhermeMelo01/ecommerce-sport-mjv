@@ -1,5 +1,6 @@
 package io.github.guilhermemelo01.ecommerce_sport.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.github.guilhermemelo01.ecommerce_sport.enun.EstadoPagamento;
 import io.github.guilhermemelo01.ecommerce_sport.enun.TipoPagamento;
 
@@ -22,6 +23,7 @@ public class Pagamento implements Serializable {
 
     private Integer tipoPagamento;
 
+    @JsonIgnore
     @OneToOne(mappedBy = "pagamento")
     private Pedido pedido;
 
@@ -31,7 +33,7 @@ public class Pagamento implements Serializable {
     public Pagamento(Integer id, EstadoPagamento estadoPagamento, TipoPagamento tipoPagamento) {
         this.id = id;
         this.estadoPagamento = (estadoPagamento == null) ? null : estadoPagamento.getCod();
-        this.tipoPagamento =  (tipoPagamento == null) ? null : tipoPagamento.getCod();;
+        this.tipoPagamento =  (tipoPagamento == null) ? null : tipoPagamento.getCod();
     }
 
     public Integer getId() {

@@ -27,6 +27,7 @@ public class Produto implements Serializable {
 
     private Integer categoria; //Quero apenas o cod da categoria
 
+    @JsonIgnore
     @OneToMany(mappedBy = "id.produto")
     private Set<ItemPedido> itens = new HashSet<>();
 
