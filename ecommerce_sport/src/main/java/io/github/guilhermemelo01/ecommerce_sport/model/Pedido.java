@@ -6,8 +6,9 @@ import javax.persistence.*;
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
 
 @Entity
 public class Pedido implements Serializable {
@@ -22,31 +23,24 @@ public class Pedido implements Serializable {
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
     private LocalDateTime dataPedido;
 
-    @Column(nullable = false)
-    private Integer quantidade;
-
     @ManyToOne
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
 
     @OneToOne
-    @JoinColumn(name = "produto_id")
-    private Produto produto;
-
-    @OneToOne
     @JoinColumn(name = "pagamento_id")
     private Pagamento pagamento;
+
+    @OneToMany(mappedBy = "id.pedido")
+    private Set<ItemPedido> itens = new HashSet<>();
 
     public Pedido() {
     }
 
-    public Pedido(Integer id, LocalDateTime dataPedido, Integer quantidade, Cliente cliente,
-                  Produto produto, Pagamento pagamento) {
+    public Pedido(Integer id, LocalDateTime dataPedido, Cliente cliente, Pagamento pagamento) {
         this.id = id;
         this.dataPedido = dataPedido;
-        this.quantidade = quantidade;
         this.cliente = cliente;
-        this.produto = produto;
         this.pagamento = pagamento;
     }
 
@@ -74,27 +68,40 @@ public class Pedido implements Serializable {
         this.cliente = cliente;
     }
 
-    public Produto getProduto() {
-        return produto;
-    }
-
-    public void setProduto(Produto produto) {
-        this.produto = produto;
-    }
-
-    public Integer getQuantidade() {
-        return quantidade;
-    }
-
-    public void setQuantidade(Integer quantidade) {
-        this.quantidade = quantidade;
-    }
-
     public Pagamento getPagamento() {
         return pagamento;
     }
 
     public void setPagamento(Pagamento pagamento) {
         this.pagamento = pagamento;
+    }
+
+    public Set<ItemPedido> getItens() {
+        return itens;
+    }
+
+    public void setItens(Set<ItemPedido> itens) {
+        this.itens = itens;
+    }
+
+    public double getValorTotal() {
+        double soma = 0;
+        for (ItemPedido ip : itens) {
+            soma += ip.getSubTotal();
+        }
+        return soma;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Pedido pedido = (Pedido) o;
+        return Objects.equals(id, pedido.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }
