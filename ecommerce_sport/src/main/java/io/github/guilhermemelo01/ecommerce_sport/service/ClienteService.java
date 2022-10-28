@@ -13,12 +13,12 @@ public class ClienteService {
     @Autowired
     private ClienteRepository clienteRepository;
 
-    public List<Cliente> findAll(){
+    public List<Cliente> buscarTodos(){
         return clienteRepository.findAll();
     }
 
-    public Cliente findById(Integer id){
+    public Cliente buscarPorId(Integer id){
         return clienteRepository.findById(id)
-                .orElseThrow(IllegalArgumentException::new);
+                .orElseThrow(() -> new IllegalArgumentException("Id não econtrado!"));
     }
 }

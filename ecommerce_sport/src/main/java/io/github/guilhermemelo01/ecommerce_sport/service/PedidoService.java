@@ -34,10 +34,12 @@ public class PedidoService {
     @Transactional
     public Pedido fazerPedido(NovoPedidoDto novoPedidoDto) {
         //Cliente -> achar o id do cliente
-        Cliente cliente = clienteRepository.findById(novoPedidoDto.getIdCliente()).orElseThrow();
+        Cliente cliente = clienteRepository.findById(novoPedidoDto.getIdCliente())
+                .orElseThrow(() -> new IllegalStateException("Este id do cliente não existe!"));
 
         //Produto -> achar o id do produto requisitado
-        Produto produto = produtoRepository.findById(novoPedidoDto.getIdProduto()).orElseThrow();
+        Produto produto = produtoRepository.findById(novoPedidoDto.getIdProduto())
+                .orElseThrow(() -> new IllegalStateException("Este id do produto não existe!"));
 
         //Pagamento -> Logica para ver qual vai ser o Estado do Pagamento de acordo com o Tipo
         EstadoPagamento estadoPagamento;

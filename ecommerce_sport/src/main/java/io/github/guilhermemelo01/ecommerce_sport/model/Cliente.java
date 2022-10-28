@@ -36,7 +36,21 @@ public class Cliente implements Serializable {
     @JsonIgnore
     @OneToMany(mappedBy = "cliente")
     private List<Pedido> pedidos = new ArrayList<>();
-    
+
+    public Cliente() {
+    }
+
+    public Cliente(Integer id, String nome, String cpf,
+                   String telefone, String email, Enderenco enderenco, List<Pedido> pedidos) {
+        this.id = id;
+        this.nome = nome;
+        this.cpf = cpf;
+        this.telefone = telefone;
+        this.email = email;
+        this.enderenco = enderenco;
+        this.pedidos = pedidos;
+    }
+
     public Integer getId() {
         return id;
     }
