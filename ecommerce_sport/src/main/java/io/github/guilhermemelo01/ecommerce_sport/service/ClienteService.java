@@ -2,6 +2,7 @@ package io.github.guilhermemelo01.ecommerce_sport.service;
 
 import io.github.guilhermemelo01.ecommerce_sport.model.Cliente;
 import io.github.guilhermemelo01.ecommerce_sport.repository.ClienteRepository;
+import io.github.guilhermemelo01.ecommerce_sport.service.exception.ArgumentoInvalidoException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +20,6 @@ public class ClienteService {
 
     public Cliente buscarPorId(Integer id){
         return clienteRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Id não econtrado!"));
+                .orElseThrow(() -> new ArgumentoInvalidoException("Id do pedido inválido! Id digitado: "+ id));
     }
 }

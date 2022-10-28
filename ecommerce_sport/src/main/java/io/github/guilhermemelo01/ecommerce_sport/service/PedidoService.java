@@ -5,6 +5,7 @@ import io.github.guilhermemelo01.ecommerce_sport.enun.EstadoPagamento;
 import io.github.guilhermemelo01.ecommerce_sport.enun.TipoPagamento;
 import io.github.guilhermemelo01.ecommerce_sport.model.*;
 import io.github.guilhermemelo01.ecommerce_sport.repository.*;
+import io.github.guilhermemelo01.ecommerce_sport.service.exception.ArgumentoInvalidoException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,25 +22,27 @@ public class PedidoService {
     @Autowired
     private ProdutoRepository produtoRepository;
     @Autowired
+    private ClienteService clienteService;
+    @Autowired
+    private ProdutoService produtoService;
+    @Autowired
     private PagamentoRepository pagamentoRepository;
     @Autowired
     private ItemPedidoRepository itemPedidoRepository;
 
 
-    public Pedido findById(Integer id) {
+    public Pedido buscarPorId(Integer id) {
         return pedidoRepository.findById(id)
-                .orElseThrow(IllegalArgumentException::new);
+                .orElseThrow(() -> new ArgumentoInvalidoException("Id do pedido inválido! Id digitado: "+ id));
     }
 
     @Transactional
     public Pedido fazerPedido(NovoPedidoDto novoPedidoDto) {
         //Cliente -> achar o id do cliente
-        Cliente cliente = clienteRepository.findById(novoPedidoDto.getIdCliente())
-                .orElseThrow(() -> new IllegalStateException("Este id do cliente não existe!"));
+        Cliente cliente = clienteService.buscarPorId(novoPedidoDto.getIdCliente());
 
         //Produto -> achar o id do produto requisitado
-        Produto produto = produtoRepository.findById(novoPedidoDto.getIdProduto())
-                .orElseThrow(() -> new IllegalStateException("Este id do produto não existe!"));
+        Produto produto = produtoService.buscarPorId(novoPedidoDto.getIdProduto());
 
         //Pagamento -> Logica para ver qual vai ser o Estado do Pagamento de acordo com o Tipo
         EstadoPagamento estadoPagamento;

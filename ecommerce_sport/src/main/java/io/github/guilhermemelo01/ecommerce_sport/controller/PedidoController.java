@@ -1,7 +1,6 @@
 package io.github.guilhermemelo01.ecommerce_sport.controller;
 
 import io.github.guilhermemelo01.ecommerce_sport.dto.NovoPedidoDto;
-import io.github.guilhermemelo01.ecommerce_sport.model.Cliente;
 import io.github.guilhermemelo01.ecommerce_sport.model.Pedido;
 import io.github.guilhermemelo01.ecommerce_sport.service.PedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +18,8 @@ public class PedidoController {
     private PedidoService pedidoService;
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<Pedido> findById(@PathVariable Integer id){
-        Pedido pedido = pedidoService.findById(id);
+    public ResponseEntity<Pedido> buscarPorId(@PathVariable Integer id){
+        Pedido pedido = pedidoService.buscarPorId(id);
         return ResponseEntity.ok().body(pedido);
     }
 

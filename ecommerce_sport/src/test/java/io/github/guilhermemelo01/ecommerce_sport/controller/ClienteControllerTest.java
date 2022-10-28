@@ -41,7 +41,7 @@ class ClienteControllerTest {
     @DisplayName("Retorna sucesso quando for retornado uma lista de clientes")
     void retornaListaDeClientes_QuandoTiverSucesso(){
         String nomeEsperado = ClienteCreator.clienteCriado().getNome();
-        List<Cliente> listaClientes = clienteController.findAll().getBody();
+        List<Cliente> listaClientes = clienteController.buscarTodos().getBody();
 
         Assertions.assertThat(listaClientes)
                 .isNotNull()
@@ -58,7 +58,7 @@ class ClienteControllerTest {
         BDDMockito.when(clienteServiceMock.buscarTodos())
                 .thenReturn(Collections.emptyList());
 
-        List<Cliente> listaClientes = clienteController.findAll().getBody();
+        List<Cliente> listaClientes = clienteController.buscarTodos().getBody();
 
         Assertions.assertThat(listaClientes)
                 .isNotNull()
@@ -69,7 +69,7 @@ class ClienteControllerTest {
     @DisplayName("Retorna sucesso quando for retornado um Cliente a partir do seu ID")
     void retornaClienteApartirDoId_QuandoTiverSucesso(){
         Integer idEsperado = ClienteCreator.clienteCriado().getId();
-        Cliente cliente = clienteController.findById(null).getBody();
+        Cliente cliente = clienteController.buscarPorId(null).getBody();
 
         Assertions.assertThat(cliente)
                 .isNotNull();
@@ -84,7 +84,7 @@ class ClienteControllerTest {
         BDDMockito.when(clienteServiceMock.buscarPorId(ArgumentMatchers.any()))
                 .thenThrow(new IllegalArgumentException());
 
-        Assertions.assertThatIllegalArgumentException().isThrownBy(() -> clienteController.findById(10));
+        Assertions.assertThatIllegalArgumentException().isThrownBy(() -> clienteController.buscarPorId(10));
     }
 
 

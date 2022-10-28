@@ -16,13 +16,13 @@ public class ClienteController {
     private ClienteService clienteService;
 
     @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<List<Cliente>> findAll(){
+    public ResponseEntity<List<Cliente>> buscarTodos(){
         List<Cliente> clientes = clienteService.buscarTodos();
         return ResponseEntity.ok().body(clientes);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<Cliente> findById(@PathVariable Integer id){
+    public ResponseEntity<Cliente> buscarPorId(@PathVariable Integer id){
         Cliente cliente = clienteService.buscarPorId(id);
         return ResponseEntity.ok().body(cliente);
     }
