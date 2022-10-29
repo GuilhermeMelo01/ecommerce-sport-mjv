@@ -10,45 +10,46 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import javax.servlet.http.HttpServletRequest;
 
 @ControllerAdvice
-public class ResourceExceptionHandler {
+public class PersonalizacaoException {
 
     @ExceptionHandler(ArgumentoInvalidoException.class)
-    public ResponseEntity<StandardError> metodoArgumentoInvalidoException(ArgumentoInvalidoException aie,
-                                                                          HttpServletRequest request) {
+    public ResponseEntity<ErroPadrao> metodoArgumentoInvalidoException(ArgumentoInvalidoException aie,
+                                                                       HttpServletRequest request) {
 
-        ValidationError error = new ValidationError(System.currentTimeMillis(), HttpStatus.BAD_REQUEST.value(),
+        ErroValidacao error = new ErroValidacao(System.currentTimeMillis(), HttpStatus.BAD_REQUEST.value(),
                 "Argumento inválido", aie.getMessage(),
                 "Verifique se preencheu o campo 'Id', com um id existente!", request.getRequestURI());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
     }
 
     @ExceptionHandler(HttpMessageNotReadableException.class)
-    public ResponseEntity<StandardError> metodoHttpMessageNotReadableException(HttpMessageNotReadableException hmnre,
-                                                                          HttpServletRequest request) {
+    public ResponseEntity<ErroPadrao> metodoHttpMessageNotReadableException(HttpMessageNotReadableException hmnre,
+                                                                            HttpServletRequest request) {
 
-        ValidationError error = new ValidationError(System.currentTimeMillis(), HttpStatus.BAD_REQUEST.value(),
+        ErroValidacao error = new ErroValidacao(System.currentTimeMillis(), HttpStatus.BAD_REQUEST.value(),
                 "Esta faltando informar algum requisito", hmnre.getMessage(),
                 "Verifique se preencheu todos os campos obrigatório!", request.getRequestURI());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
     }
 
     @ExceptionHandler(NullPointerException.class)
-    public ResponseEntity<StandardError> metodoNullPointerException(NullPointerException npe,
-                                                                               HttpServletRequest request) {
+    public ResponseEntity<ErroPadrao> metodoNullPointerException(NullPointerException npe,
+                                                                 HttpServletRequest request) {
 
-        ValidationError error = new ValidationError(System.currentTimeMillis(), HttpStatus.BAD_REQUEST.value(),
+        ErroValidacao error = new ErroValidacao(System.currentTimeMillis(), HttpStatus.BAD_REQUEST.value(),
                 "Argumento inválido", npe.getMessage(),
                 "Verifique se preencheu todos os campos com argumentos válidos!", request.getRequestURI());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
     }
 
     @ExceptionHandler(IllegalArgumentException.class)
-    public ResponseEntity<StandardError> metodoIllegalArgumentException(IllegalArgumentException iae,
-                                                                    HttpServletRequest request) {
+    public ResponseEntity<ErroPadrao> metodoIllegalArgumentException(IllegalArgumentException iae,
+                                                                     HttpServletRequest request) {
 
-        ValidationError error = new ValidationError(System.currentTimeMillis(), HttpStatus.BAD_REQUEST.value(),
+        ErroValidacao error = new ErroValidacao(System.currentTimeMillis(), HttpStatus.BAD_REQUEST.value(),
                 "Requisito espera outro tipo de valor", iae.getMessage(),
                 "Verifique se preencheu algum campo com um tipo não esperado!", request.getRequestURI());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
     }
+
 }

@@ -2,7 +2,7 @@ package io.github.guilhermemelo01.ecommerce_sport.controller.exception;
 
 import java.io.Serializable;
 
-public class StandardError implements Serializable {
+public class ErroPadrao implements Serializable {
 
     private Long timeStamp;
     private Integer status;
@@ -11,10 +11,10 @@ public class StandardError implements Serializable {
     private String message;
     private String path;
 
-    public StandardError() {
+    public ErroPadrao() {
     }
 
-    public StandardError(Long timeStamp, Integer status, String error, String message, String sugestao, String path) {
+    public ErroPadrao(Long timeStamp, Integer status, String error, String message, String sugestao, String path) {
         this.timeStamp = timeStamp;
         this.status = status;
         this.error = error;
@@ -62,7 +62,6 @@ public class StandardError implements Serializable {
     public void setMessage(String message) {
         this.message = message;
     }
-
 
     public String getPath() {
         return path;
