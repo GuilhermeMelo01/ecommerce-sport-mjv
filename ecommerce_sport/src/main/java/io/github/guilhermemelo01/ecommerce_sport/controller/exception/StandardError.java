@@ -7,14 +7,19 @@ public class StandardError implements Serializable {
     private Long timeStamp;
     private Integer status;
     private String error;
+    private String sugestao;
     private String message;
     private String path;
 
-    public StandardError(Long timeStamp, Integer status, String error, String message, String path) {
+    public StandardError() {
+    }
+
+    public StandardError(Long timeStamp, Integer status, String error, String message, String sugestao, String path) {
         this.timeStamp = timeStamp;
         this.status = status;
         this.error = error;
         this.message = message;
+        this.sugestao = sugestao;
         this.path = path;
     }
 
@@ -42,6 +47,14 @@ public class StandardError implements Serializable {
         this.error = error;
     }
 
+    public String getSugestao() {
+        return sugestao;
+    }
+
+    public void setSugestao(String sugestao) {
+        this.sugestao = sugestao;
+    }
+
     public String getMessage() {
         return message;
     }
@@ -49,6 +62,7 @@ public class StandardError implements Serializable {
     public void setMessage(String message) {
         this.message = message;
     }
+
 
     public String getPath() {
         return path;

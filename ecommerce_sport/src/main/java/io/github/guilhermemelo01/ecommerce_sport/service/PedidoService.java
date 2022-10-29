@@ -22,10 +22,6 @@ public class PedidoService {
     @Autowired
     private ProdutoRepository produtoRepository;
     @Autowired
-    private ClienteService clienteService;
-    @Autowired
-    private ProdutoService produtoService;
-    @Autowired
     private PagamentoRepository pagamentoRepository;
     @Autowired
     private ItemPedidoRepository itemPedidoRepository;
@@ -33,16 +29,18 @@ public class PedidoService {
 
     public Pedido buscarPorId(Integer id) {
         return pedidoRepository.findById(id)
-                .orElseThrow(() -> new ArgumentoInvalidoException("Id do pedido inválido! Id digitado: "+ id));
+                .orElseThrow(() -> new ArgumentoInvalidoException("Id não encotrado"));
     }
 
     @Transactional
     public Pedido fazerPedido(NovoPedidoDto novoPedidoDto) {
         //Cliente -> achar o id do cliente
-        Cliente cliente = clienteService.buscarPorId(novoPedidoDto.getIdCliente());
+        Cliente cliente = clienteRepository.findById(
+                novoPedidoDto.getIdCliente()).orElseThrow(() -> new ArgumentoInvalidoException("Id não encotrado"));
 
         //Produto -> achar o id do produto requisitado
-        Produto produto = produtoService.buscarPorId(novoPedidoDto.getIdProduto());
+        Produto produto = produtoRepository.findById(
+                novoPedidoDto.getIdProduto()).orElseThrow(() -> new ArgumentoInvalidoException("Id não encotrado"));
 
         //Pagamento -> Logica para ver qual vai ser o Estado do Pagamento de acordo com o Tipo
         EstadoPagamento estadoPagamento;

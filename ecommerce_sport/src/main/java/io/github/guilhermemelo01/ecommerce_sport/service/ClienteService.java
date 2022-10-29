@@ -20,6 +20,6 @@ public class ClienteService {
 
     public Cliente buscarPorId(Integer id){
         return clienteRepository.findById(id)
-                .orElseThrow(() -> new ArgumentoInvalidoException("Id do pedido inválido! Id digitado: "+ id));
+                .orElseThrow(ArgumentoInvalidoException::new);
     }
 }

@@ -12,7 +12,7 @@ public class ProdutoService {
 
     public Produto buscarPorId(Integer id){
         return produtoRepository.findById(id)
-                .orElseThrow(() -> new ArgumentoInvalidoException("Id inválido: "+ id));
+                .orElseThrow(ArgumentoInvalidoException::new);
     }
 
 }
