@@ -17,13 +17,13 @@ public class PedidoController {
     @Autowired
     private PedidoService pedidoService;
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @GetMapping(value = "/{id}")
     public ResponseEntity<Pedido> buscarPorId(@PathVariable Integer id){
         Pedido pedido = pedidoService.buscarPorId(id);
         return ResponseEntity.ok().body(pedido);
     }
 
-    @RequestMapping(method = RequestMethod.POST)
+    @PostMapping
     public ResponseEntity<Void> fazerPedido(@RequestBody NovoPedidoDto pedidoDto){
         Pedido pedido = pedidoService.fazerPedido(pedidoDto);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest()

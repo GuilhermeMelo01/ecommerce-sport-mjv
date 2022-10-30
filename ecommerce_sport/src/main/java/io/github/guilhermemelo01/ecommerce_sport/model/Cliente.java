@@ -71,10 +71,6 @@ public class Cliente implements Serializable {
         return cpf;
     }
 
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
-
     public String getTelefone() {
         return telefone;
     }
@@ -95,16 +91,8 @@ public class Cliente implements Serializable {
         return enderenco;
     }
 
-    public void setEnderenco(Enderenco enderenco) {
-        this.enderenco = enderenco;
-    }
-
     public List<Pedido> getPedidos() {
         return pedidos;
-    }
-
-    public void setPedidos(List<Pedido> pedidos) {
-        this.pedidos = pedidos;
     }
 
     @Override
