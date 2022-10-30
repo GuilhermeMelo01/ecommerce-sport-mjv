@@ -1,12 +1,14 @@
 package io.github.guilhermemelo01.ecommerce_sport.controller;
 
 import io.github.guilhermemelo01.ecommerce_sport.dto.AtualizarClienteDto;
+import io.github.guilhermemelo01.ecommerce_sport.dto.NovoClienteDto;
 import io.github.guilhermemelo01.ecommerce_sport.model.Cliente;
 import io.github.guilhermemelo01.ecommerce_sport.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -28,10 +30,17 @@ public class ClienteController {
         return ResponseEntity.ok().body(cliente);
     }
 
+    @PostMapping
+    public ResponseEntity<Void> inserir(@Valid @RequestBody NovoClienteDto clienteDto){
+        clienteService.inserir(clienteDto);
+        return ResponseEntity.noContent().build();
+    }
+
+
     @PatchMapping("/atualizar/{id}")
     public ResponseEntity<Void> atualizar(@PathVariable Integer id,
                                           @RequestBody AtualizarClienteDto clienteDto){
-        clienteService.atualizarCliente(id, clienteDto);
+        clienteService.atualizar(id, clienteDto);
         return ResponseEntity.noContent().build();
     }
 

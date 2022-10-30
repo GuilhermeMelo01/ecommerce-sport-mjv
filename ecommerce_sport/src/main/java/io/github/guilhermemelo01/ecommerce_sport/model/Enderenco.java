@@ -22,6 +22,17 @@ public class Enderenco implements Serializable {
     @Column(name = "end_complemento", length = 50)
     private String complemento;
 
+    public Enderenco() {
+    }
+
+    public Enderenco(String logradouro, String cidade, String bairro, String numero, String complemento) {
+        this.logradouro = logradouro;
+        this.cidade = cidade;
+        this.bairro = bairro;
+        this.numero = numero;
+        this.complemento = complemento;
+    }
+
     public String getLogradouro() {
         return logradouro;
     }

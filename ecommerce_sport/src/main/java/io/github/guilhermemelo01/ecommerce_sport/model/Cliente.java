@@ -41,6 +41,15 @@ public class Cliente implements Serializable {
     }
 
     public Cliente(Integer id, String nome, String cpf,
+                   String telefone, String email) {
+        this.id = id;
+        this.nome = nome;
+        this.cpf = cpf;
+        this.telefone = telefone;
+        this.email = email;
+    }
+
+    public Cliente(Integer id, String nome, String cpf,
                    String telefone, String email, Enderenco enderenco, List<Pedido> pedidos) {
         this.id = id;
         this.nome = nome;
@@ -91,8 +100,18 @@ public class Cliente implements Serializable {
         return enderenco;
     }
 
+    public void setEnderenco(Enderenco enderenco) {
+        this.enderenco = enderenco;
+    }
+
     public List<Pedido> getPedidos() {
         return pedidos;
+    }
+
+    public void naoVazio(){
+        if (this.nome.isBlank() || this.nome.isEmpty()){
+            throw new IllegalArgumentException("Este campo nao pode ser vazio!");
+        }
     }
 
     @Override
