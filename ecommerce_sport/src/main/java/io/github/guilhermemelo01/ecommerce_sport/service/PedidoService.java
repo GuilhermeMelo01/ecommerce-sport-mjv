@@ -34,15 +34,12 @@ public class PedidoService {
 
     @Transactional
     public Pedido fazerPedido(NovoPedidoDto novoPedidoDto) {
-        //Cliente -> achar o id do cliente
         Cliente cliente = clienteRepository.findById(
                 novoPedidoDto.getIdCliente()).orElseThrow(() -> new ArgumentoInvalidoException("Id não encotrado"));
 
-        //Produto -> achar o id do produto requisitado
         Produto produto = produtoRepository.findById(
                 novoPedidoDto.getIdProduto()).orElseThrow(() -> new ArgumentoInvalidoException("Id não encotrado"));
 
-        //Pagamento -> Logica para ver qual vai ser o Estado do Pagamento de acordo com o Tipo
         EstadoPagamento estadoPagamento;
         Integer codTipoPagamento = novoPedidoDto.getTipoPagamento();
         if (codTipoPagamento > 3 || codTipoPagamento < 1) {
@@ -55,18 +52,16 @@ public class PedidoService {
         Pagamento pagamento = new Pagamento(null, estadoPagamento,
                 TipoPagamento.toEnum(codTipoPagamento));
 
-        //Pedido
         Pedido pedido = new Pedido(null, LocalDateTime.now(), cliente, pagamento);
 
-        //Item Pedido
-        ItemPedido iten = new ItemPedido(pedido, produto, novoPedidoDto.getQuantidade(), produto.getPreco());
-        pedido.getItens().add(iten);
+        ItemPedido itemPedido = new ItemPedido(pedido, produto, novoPedidoDto.getQuantidade(), produto.getPreco());
+        pedido.getItens().add(itemPedido);
 
         pedido = pedidoRepository.save(pedido);
         clienteRepository.save(pedido.getCliente());
         pagamentoRepository.save(pedido.getPagamento());
         itemPedidoRepository.saveAll(pedido.getItens());
-        produtoRepository.save(iten.getProduto());
+        produtoRepository.save(itemPedido.getProduto());
 
         return pedido;
     }
