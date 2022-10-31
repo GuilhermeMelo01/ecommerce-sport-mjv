@@ -31,7 +31,7 @@ public class Pedido implements Serializable {
     @JoinColumn(name = "pagamento_id")
     private Pagamento pagamento;
 
-    @OneToMany(mappedBy = "id.pedido")
+    @OneToMany(mappedBy = "id.pedido", cascade = CascadeType.ALL)
     private Set<ItemPedido> itens = new HashSet<>();
 
     public Pedido() {
@@ -42,6 +42,14 @@ public class Pedido implements Serializable {
         this.dataPedido = dataPedido;
         this.cliente = cliente;
         this.pagamento = pagamento;
+    }
+
+    public Pedido(Integer id, LocalDateTime dataPedido, Cliente cliente, Pagamento pagamento, Set<ItemPedido> itens) {
+        this.id = id;
+        this.dataPedido = dataPedido;
+        this.cliente = cliente;
+        this.pagamento = pagamento;
+        this.itens = itens;
     }
 
     public Integer getId() {
@@ -82,14 +90,6 @@ public class Pedido implements Serializable {
 
     public void setItens(Set<ItemPedido> itens) {
         this.itens = itens;
-    }
-
-    public double getValorTotal() {
-        double soma = 0;
-        for (ItemPedido ip : itens) {
-            soma += ip.getSubTotal();
-        }
-        return soma;
     }
 
     @Override

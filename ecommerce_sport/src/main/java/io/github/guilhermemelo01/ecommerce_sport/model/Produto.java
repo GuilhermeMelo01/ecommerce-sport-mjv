@@ -6,8 +6,9 @@ import io.github.guilhermemelo01.ecommerce_sport.enun.Categoria;
 import javax.persistence.*;
 import java.io.Serial;
 import java.io.Serializable;
-import java.math.BigDecimal;
-import java.util.*;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
 
 @Entity
 public class Produto implements Serializable {
@@ -19,10 +20,8 @@ public class Produto implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(length = 30, nullable = false)
     private String nome;
 
-    @Column(nullable = false)
     private Double preco;
 
     private Integer categoria; //Quero apenas o cod da categoria
@@ -79,15 +78,6 @@ public class Produto implements Serializable {
 
     public void setItens(Set<ItemPedido> itens) {
         this.itens = itens;
-    }
-
-    @JsonIgnore
-    public List<Pedido> getPedidos() {
-        List<Pedido> lista = new ArrayList<>();
-        for (ItemPedido iten : itens) {
-            lista.add(iten.getPedido());
-        }
-        return lista;
     }
 
     @Override

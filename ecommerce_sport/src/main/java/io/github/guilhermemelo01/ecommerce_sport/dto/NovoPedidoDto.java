@@ -1,11 +1,14 @@
 package io.github.guilhermemelo01.ecommerce_sport.dto;
 
+import io.github.guilhermemelo01.ecommerce_sport.model.ItemPedido;
+
+import java.util.Set;
+
 public class NovoPedidoDto {
 
     private Integer idCliente;
-    private Integer idProduto;
+    private Set<ItemPedido> itens;
     private Integer tipoPagamento;
-    private Integer quantidade;
 
     public NovoPedidoDto() {
     }
@@ -18,12 +21,12 @@ public class NovoPedidoDto {
         this.idCliente = idCliente;
     }
 
-    public Integer getIdProduto() {
-        return idProduto;
+    public Set<ItemPedido> getItens() {
+        return itens;
     }
 
-    public void setIdProduto(Integer idProduto) {
-        this.idProduto = idProduto;
+    public void setItens(Set<ItemPedido> itens) {
+        this.itens = itens;
     }
 
     public Integer getTipoPagamento() {
@@ -34,11 +37,4 @@ public class NovoPedidoDto {
         this.tipoPagamento = tipoPagamento;
     }
 
-    public Integer getQuantidade() {
-        return quantidade;
-    }
-
-    public void setQuantidade(Integer quantidade) {
-        this.quantidade = quantidade;
-    }
 }
