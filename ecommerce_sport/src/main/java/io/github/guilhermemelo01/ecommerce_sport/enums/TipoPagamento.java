@@ -1,4 +1,4 @@
-package io.github.guilhermemelo01.ecommerce_sport.enun;
+package io.github.guilhermemelo01.ecommerce_sport.enums;
 
 public enum TipoPagamento {
 

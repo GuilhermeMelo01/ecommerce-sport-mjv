@@ -1,11 +1,12 @@
 package io.github.guilhermemelo01.ecommerce_sport.service;
 
 import io.github.guilhermemelo01.ecommerce_sport.dto.NovoPedidoDto;
-import io.github.guilhermemelo01.ecommerce_sport.enun.EstadoPagamento;
-import io.github.guilhermemelo01.ecommerce_sport.enun.TipoPagamento;
+import io.github.guilhermemelo01.ecommerce_sport.enums.EstadoPagamento;
+import io.github.guilhermemelo01.ecommerce_sport.enums.TipoPagamento;
 import io.github.guilhermemelo01.ecommerce_sport.model.*;
 import io.github.guilhermemelo01.ecommerce_sport.repository.*;
 import io.github.guilhermemelo01.ecommerce_sport.service.exception.ArgumentoInvalidoException;
+import io.github.guilhermemelo01.ecommerce_sport.service.exception.PagamentoException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,42 +32,6 @@ public class PedidoService {
         return pedidoRepository.findById(id)
                 .orElseThrow(() -> new ArgumentoInvalidoException("Id não encotrado"));
     }
-
-//    @Transactional
-//    public Pedido fazerPedido(NovoPedidoDto novoPedidoDto) {
-//        Cliente cliente = clienteRepository.findById(
-//                novoPedidoDto.getIdCliente()).orElseThrow(() -> new ArgumentoInvalidoException("Id não encotrado"));
-//
-//        Produto produto = produtoRepository.findById(
-//                novoPedidoDto.getIdProduto()).orElseThrow();
-//
-//        EstadoPagamento estadoPagamento;
-//        Integer codTipoPagamento = novoPedidoDto.getTipoPagamento();
-//        if (codTipoPagamento > 3 || codTipoPagamento < 1) {
-//            throw new IllegalArgumentException("Não existe esse tipo de pagamento!");
-//        } else if (codTipoPagamento == 1) {
-//            estadoPagamento = EstadoPagamento.PENDENTE;
-//        } else {
-//            estadoPagamento = EstadoPagamento.QUITADO;
-//        }
-//
-//        Pagamento pagamento = new Pagamento(null, estadoPagamento,
-//                TipoPagamento.toEnum(codTipoPagamento));
-//
-//        Pedido pedido = new Pedido(null, LocalDateTime.now(), cliente, pagamento);
-//
-//        ItemPedido itemPedido = new ItemPedido(pedido, produto,
-//                novoPedidoDto.getQuantidade(), produto.getPreco());
-//        pedido.getItens().add(itemPedido);
-//
-//        pedido = pedidoRepository.save(pedido);
-//        clienteRepository.save(pedido.getCliente());
-//        pagamentoRepository.save(pedido.getPagamento());
-//        itemPedidoRepository.saveAll(pedido.getItens());
-//        produtoRepository.save(itemPedido.getProduto());
-//
-//        return pedido;
-//    }
 
     @Transactional
     public Pedido fazerPedido(NovoPedidoDto novoPedidoDto) {
@@ -117,7 +82,25 @@ public class PedidoService {
         return pedido;
     }
 
-    public void deletarPorId() {
+    public void cancelarPedido(Integer id) {
+        Pedido pedido = buscarPorId(id);
+        TipoPagamento tipoPagamento = pedido.getPagamento().getTipoPagamento();
+        if(tipoPagamento.equals(TipoPagamento.PIX)){
+            throw new PagamentoException("Pagamento via Pix não pode ser cancelado");
+        } else if (tipoPagamento.equals(TipoPagamento.DEBITO)){
+            throw new PagamentoException("Esse pagamento já estar quitado.");
+        }else {
+            pedido.getPagamento().setEstadoPagamento(EstadoPagamento.CANCELADO);
+        }
+        pedidoRepository.save(pedido);
+    }
 
+    public void removerPorId(Integer id) {
+        Pedido pedido = buscarPorId(id);
+        EstadoPagamento estadoPagamento = pedido.getPagamento().getEstadoPagamento();
+        if(estadoPagamento == EstadoPagamento.PENDENTE){
+            throw new PagamentoException("Você tem pagamento pedente, e não poderar realizar essa operação");
+        }
+        pedidoRepository.delete(pedido);
     }
 }

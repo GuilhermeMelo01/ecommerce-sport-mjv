@@ -1,7 +1,7 @@
 package io.github.guilhermemelo01.ecommerce_sport.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.github.guilhermemelo01.ecommerce_sport.enun.Categoria;
+import io.github.guilhermemelo01.ecommerce_sport.enums.Categoria;
 
 import javax.persistence.*;
 import java.io.Serial;

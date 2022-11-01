@@ -30,4 +30,16 @@ public class PedidoController {
                 .path("{/id}").buildAndExpand(pedido.getId()).toUri();
         return ResponseEntity.created(uri).build();
     }
+
+    @PatchMapping("cancelar/{id}")
+    public ResponseEntity<Void> cancelar(@PathVariable Integer id){
+        pedidoService.cancelarPedido(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @DeleteMapping("remover/{id}")
+    public ResponseEntity<Void> remover(@PathVariable Integer id){
+        pedidoService.removerPorId(id);
+        return ResponseEntity.noContent().build();
+    }
 }
