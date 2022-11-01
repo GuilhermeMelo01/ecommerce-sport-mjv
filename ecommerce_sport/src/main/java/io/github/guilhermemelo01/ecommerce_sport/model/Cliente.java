@@ -80,6 +80,10 @@ public class Cliente implements Serializable {
         return cpf;
     }
 
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
     public String getTelefone() {
         return telefone;
     }
@@ -106,12 +110,6 @@ public class Cliente implements Serializable {
 
     public List<Pedido> getPedidos() {
         return pedidos;
-    }
-
-    public void naoVazio(){
-        if (this.nome.isBlank() || this.nome.isEmpty()){
-            throw new IllegalArgumentException("Este campo nao pode ser vazio!");
-        }
     }
 
     @Override

@@ -35,8 +35,8 @@ public class PedidoService {
 
     @Transactional
     public Pedido fazerPedido(NovoPedidoDto novoPedidoDto) {
-        Cliente cliente = clienteRepository.findById(
-                novoPedidoDto.getIdCliente()).orElseThrow(() -> new ArgumentoInvalidoException("Id não encotrado"));
+        Cliente cliente = clienteRepository.findById(novoPedidoDto.getIdCliente())
+                .orElseThrow(() -> new ArgumentoInvalidoException("Id não encotrado"));
 
         EstadoPagamento estadoPagamento;
         Integer codTipoPagamento = novoPedidoDto.getTipoPagamento();
@@ -71,7 +71,6 @@ public class PedidoService {
 
             pedidoRepository.save(pedido);
             produtoRepository.save(produto);
-            itemPedidoRepository.saveAll(pedido.getItens());
         }
 
         pedido = pedidoRepository.save(pedido);
@@ -84,12 +83,12 @@ public class PedidoService {
 
     public void cancelarPedido(Integer id) {
         Pedido pedido = buscarPorId(id);
-        TipoPagamento tipoPagamento = pedido.getPagamento().getTipoPagamento();
-        if(tipoPagamento.equals(TipoPagamento.PIX)){
-            throw new PagamentoException("Pagamento via Pix não pode ser cancelado");
-        } else if (tipoPagamento.equals(TipoPagamento.DEBITO)){
+        EstadoPagamento estado = pedido.getPagamento().getEstadoPagamento();
+        if (estado.equals(EstadoPagamento.QUITADO)) {
             throw new PagamentoException("Esse pagamento já estar quitado.");
-        }else {
+        } else if (estado.equals(EstadoPagamento.CANCELADO)) {
+            throw new PagamentoException("Esse pagamento já foi cancelado.");
+        } else {
             pedido.getPagamento().setEstadoPagamento(EstadoPagamento.CANCELADO);
         }
         pedidoRepository.save(pedido);
@@ -97,8 +96,8 @@ public class PedidoService {
 
     public void removerPorId(Integer id) {
         Pedido pedido = buscarPorId(id);
-        EstadoPagamento estadoPagamento = pedido.getPagamento().getEstadoPagamento();
-        if(estadoPagamento == EstadoPagamento.PENDENTE){
+        EstadoPagamento estado = pedido.getPagamento().getEstadoPagamento();
+        if (estado.equals(EstadoPagamento.PENDENTE)) {
             throw new PagamentoException("Você tem pagamento pedente, e não poderar realizar essa operação");
         }
         pedidoRepository.delete(pedido);

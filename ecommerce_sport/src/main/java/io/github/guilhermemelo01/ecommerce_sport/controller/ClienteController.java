@@ -1,6 +1,7 @@
 package io.github.guilhermemelo01.ecommerce_sport.controller;
 
 import io.github.guilhermemelo01.ecommerce_sport.dto.AtualizarClienteDto;
+import io.github.guilhermemelo01.ecommerce_sport.dto.AtualizarClienteEnderecoDto;
 import io.github.guilhermemelo01.ecommerce_sport.dto.NovoClienteDto;
 import io.github.guilhermemelo01.ecommerce_sport.model.Cliente;
 import io.github.guilhermemelo01.ecommerce_sport.service.ClienteService;
@@ -39,9 +40,17 @@ public class ClienteController {
 
     @PatchMapping("/atualizar/{id}")
     public ResponseEntity<Void> atualizar(@PathVariable Integer id,
-                                          @RequestBody AtualizarClienteDto clienteDto){
-        clienteService.atualizar(id, clienteDto);
+                                          @Valid @RequestBody AtualizarClienteDto clienteDto){
+        clienteService.atualizarCliente(id, clienteDto);
         return ResponseEntity.noContent().build();
     }
+
+    @PutMapping("/atualizar/{id}")
+    public ResponseEntity<Void> atualizar(@PathVariable Integer id,
+                                          @Valid @RequestBody AtualizarClienteEnderecoDto clienteEnderecoDto){
+        clienteService.atualizarClienteEnderenco(id, clienteEnderecoDto);
+        return ResponseEntity.noContent().build();
+    }
+
 
 }
