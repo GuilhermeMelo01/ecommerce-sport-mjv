@@ -52,5 +52,9 @@ public class ClienteController {
         return ResponseEntity.noContent().build();
     }
 
-
+    @DeleteMapping("remover/{id}")
+    public ResponseEntity<Void> remover(@PathVariable Integer id){
+        clienteService.removerPorId(id);
+        return ResponseEntity.noContent().build();
+    }
 }

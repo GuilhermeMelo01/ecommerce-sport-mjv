@@ -3,6 +3,7 @@ package io.github.guilhermemelo01.ecommerce_sport.controller.exception;
 import io.github.guilhermemelo01.ecommerce_sport.service.exception.ArgumentoInvalidoException;
 import io.github.guilhermemelo01.ecommerce_sport.service.exception.PagamentoException;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -22,7 +23,20 @@ public class PersonalizacaoException {
         ErroValidacao erro = new ErroValidacao(System.currentTimeMillis(), HttpStatus.BAD_REQUEST.value()
                 , "Violação na integridade de dados",
                 "Erro de integridade dos dados passados na requisição",
-                "Verifique se todos os dados estão corretos", request.getRequestURI());
+                "Verifique se todos os dados passados seguem as regras de integridade",
+                request.getRequestURI());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(erro);
+    }
+
+    @ExceptionHandler(EmptyResultDataAccessException.class)
+    public ResponseEntity<ErroPadrao> metodoEmptyResultDataAccessException(
+            EmptyResultDataAccessException erdae, HttpServletRequest request) {
+
+        ErroValidacao erro = new ErroValidacao(System.currentTimeMillis(), HttpStatus.BAD_REQUEST.value()
+                , "O dado solicitado está vazio",
+                erdae.getMessage(),
+                "Verifique se todos os dados solicitados existem",
+                request.getRequestURI());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(erro);
     }
 

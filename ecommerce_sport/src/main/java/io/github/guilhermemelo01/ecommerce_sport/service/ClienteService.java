@@ -3,10 +3,13 @@ package io.github.guilhermemelo01.ecommerce_sport.service;
 import io.github.guilhermemelo01.ecommerce_sport.dto.AtualizarClienteDto;
 import io.github.guilhermemelo01.ecommerce_sport.dto.AtualizarClienteEnderecoDto;
 import io.github.guilhermemelo01.ecommerce_sport.dto.NovoClienteDto;
+import io.github.guilhermemelo01.ecommerce_sport.enums.EstadoPagamento;
 import io.github.guilhermemelo01.ecommerce_sport.model.Cliente;
 import io.github.guilhermemelo01.ecommerce_sport.model.Enderenco;
+import io.github.guilhermemelo01.ecommerce_sport.model.Pedido;
 import io.github.guilhermemelo01.ecommerce_sport.repository.ClienteRepository;
 import io.github.guilhermemelo01.ecommerce_sport.service.exception.ArgumentoInvalidoException;
+import io.github.guilhermemelo01.ecommerce_sport.service.exception.PagamentoException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -62,6 +65,10 @@ public class ClienteService {
         cliente.getEnderenco().setComplemento(clienteEnderecoDto.getComplemento());
 
         clienteRepository.save(cliente);
+    }
+
+    public void removerPorId(Integer id) {
+            clienteRepository.deleteById(id);
     }
 
 

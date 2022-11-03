@@ -37,9 +37,5 @@ public class PedidoController {
         return ResponseEntity.noContent().build();
     }
 
-    @DeleteMapping("remover/{id}")
-    public ResponseEntity<Void> remover(@PathVariable Integer id){
-        pedidoService.removerPorId(id);
-        return ResponseEntity.noContent().build();
-    }
+
 }

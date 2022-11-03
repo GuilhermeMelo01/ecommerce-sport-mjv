@@ -93,13 +93,4 @@ public class PedidoService {
         }
         pedidoRepository.save(pedido);
     }
-
-    public void removerPorId(Integer id) {
-        Pedido pedido = buscarPorId(id);
-        EstadoPagamento estado = pedido.getPagamento().getEstadoPagamento();
-        if (estado.equals(EstadoPagamento.PENDENTE)) {
-            throw new PagamentoException("Você tem pagamento pedente, e não poderar realizar essa operação");
-        }
-        pedidoRepository.delete(pedido);
-    }
 }

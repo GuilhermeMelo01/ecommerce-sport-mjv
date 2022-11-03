@@ -1,18 +1,22 @@
 package io.github.guilhermemelo01.ecommerce_sport.dto;
 
+import org.hibernate.validator.constraints.Length;
+
+import javax.validation.constraints.NotBlank;
+
 public class AtualizarClienteDto {
 
+    @NotBlank(message = "Campo nome não pode ser vazio")
+    @Length(min = 5, max = 20, message = "O nome deve ter entre 5 e 20 caracteres")
     private String nome;
+
+    @NotBlank(message = "Campo telefone não pode ser vazio")
     private String telefone;
+
+    @NotBlank(message = "Campo email não pode ser vazio")
     private String email;
 
     public AtualizarClienteDto() {
-    }
-
-    public AtualizarClienteDto(String nome, String telefone, String email) {
-        this.nome = nome;
-        this.telefone = telefone;
-        this.email = email;
     }
 
     public String getNome() {

@@ -9,7 +9,6 @@ import java.util.List;
 @Repository
 public interface ProdutoRepository extends JpaRepository<Produto, Integer> {
 
-    //SELECT * FROM produto WHERE nome LIKE '%in%';
     List<Produto> findByNomeContaining(String nome);
 
     List<Produto> findByPrecoLessThan(Double preco);

@@ -33,6 +33,6 @@ public enum TipoPagamento {
             }
         }
 
-        throw new IllegalArgumentException("Value is not invalid! "+ cod);
+        throw new IllegalArgumentException("Valor inválido!  "+ cod);
     }
 }

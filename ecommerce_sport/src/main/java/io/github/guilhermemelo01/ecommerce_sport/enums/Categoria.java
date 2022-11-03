@@ -35,6 +35,6 @@ public enum Categoria {
                 return categoria;
             }
         }
-        throw new IllegalArgumentException("Value is not invalid! "+ cod);
+        throw new IllegalArgumentException("Valor inválido! "+ cod);
     }
 }
