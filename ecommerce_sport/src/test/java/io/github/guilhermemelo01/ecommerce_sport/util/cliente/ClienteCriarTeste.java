@@ -1,4 +1,4 @@
-package io.github.guilhermemelo01.ecommerce_sport.util;
+package io.github.guilhermemelo01.ecommerce_sport.util.cliente;
 
 import io.github.guilhermemelo01.ecommerce_sport.model.Cliente;
 import io.github.guilhermemelo01.ecommerce_sport.model.Enderenco;
@@ -6,7 +6,7 @@ import io.github.guilhermemelo01.ecommerce_sport.model.Pedido;
 
 import java.util.List;
 
-public class ClienteCreator {
+public class ClienteCriarTeste {
 
     public static Cliente clienteCriado(){
         return new Cliente(1, "Guilherme", "1234567890", "4093284028",

@@ -2,7 +2,7 @@ package io.github.guilhermemelo01.ecommerce_sport.service;
 
 import io.github.guilhermemelo01.ecommerce_sport.model.Cliente;
 import io.github.guilhermemelo01.ecommerce_sport.repository.ClienteRepository;
-import io.github.guilhermemelo01.ecommerce_sport.util.ClienteCreator;
+import io.github.guilhermemelo01.ecommerce_sport.util.cliente.ClienteCriarTeste;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -29,11 +29,11 @@ class ClienteServiceTest {
 
     @BeforeEach
     void setUp(){
-        List<Cliente> listaClientes = List.of(ClienteCreator.clienteCriado());
+        List<Cliente> listaClientes = List.of(ClienteCriarTeste.clienteCriado());
         BDDMockito.when(clienteRepositoryMock.findAll())
                 .thenReturn(listaClientes);
 
-        Cliente cliente = ClienteCreator.clienteCriado();
+        Cliente cliente = ClienteCriarTeste.clienteCriado();
         BDDMockito.when(clienteRepositoryMock.findById(ArgumentMatchers.any()))
                 .thenReturn(Optional.of(cliente));
     }
@@ -41,7 +41,7 @@ class ClienteServiceTest {
     @Test
     @DisplayName("Retorna sucesso quando for retornado uma lista de clientes")
     void retornaListaDeClientes_QuandoTiverSucesso(){
-        String nomeEsperado = ClienteCreator.clienteCriado().getNome();
+        String nomeEsperado = ClienteCriarTeste.clienteCriado().getNome();
         List<Cliente> listaClientes = clienteService.buscarTodos();
 
         Assertions.assertThat(listaClientes)
@@ -68,7 +68,7 @@ class ClienteServiceTest {
     @Test
     @DisplayName("Retorna sucesso quando for retornado um Cliente a partir do seu ID")
     void retornaClienteApartirDoId_QuandoTiverSucesso(){
-        Integer idEsperado = ClienteCreator.clienteCriado().getId();
+        Integer idEsperado = ClienteCriarTeste.clienteCriado().getId();
         Cliente cliente = clienteService.buscarPorId(null);
 
         Assertions.assertThat(cliente)
