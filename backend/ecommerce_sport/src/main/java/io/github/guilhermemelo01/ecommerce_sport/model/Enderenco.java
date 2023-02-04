@@ -6,10 +6,7 @@ import java.io.Serial;
 import java.io.Serializable;
 
 @Embeddable
-public class Enderenco implements Serializable {
-
-    @Serial
-    private static final long serialVersionUID = 1L;
+public class Enderenco {
 
     @Column(name = "end_logradouro", length = 50, nullable = false)
     private String logradouro;

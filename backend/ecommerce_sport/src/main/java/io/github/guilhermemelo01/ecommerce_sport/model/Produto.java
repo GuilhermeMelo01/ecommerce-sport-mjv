@@ -1,31 +1,29 @@
 package io.github.guilhermemelo01.ecommerce_sport.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.github.guilhermemelo01.ecommerce_sport.enums.Categoria;
 
 import javax.persistence.*;
-import java.io.Serial;
-import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
 @Entity
-public class Produto implements Serializable {
-
-    @Serial
-    private static final long serialVersionUID = 1L;
+public class Produto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Integer id;
-
+    @Column(name = "nome")
     private String nome;
-
+    @Column(name = "preco")
     private Double preco;
+    @Column(name = "imagem_url")
+    private String imagem_url;
 
-    private Integer categoria; //Quero apenas o cod da categoria
-
+    @ManyToOne
+    @JoinColumn(name = "categoria_id")
+    private Categoria categoria;
     @JsonIgnore
     @OneToMany(mappedBy = "id.produto")
     private Set<ItemPedido> itens = new HashSet<>();
@@ -37,7 +35,7 @@ public class Produto implements Serializable {
         this.id = id;
         this.nome = nome;
         this.preco = preco;
-        this.categoria = (categoria == null) ? null : categoria.getCod();
+        this.categoria = categoria;
     }
 
     public Integer getId() {
@@ -64,12 +62,20 @@ public class Produto implements Serializable {
         this.preco = preco;
     }
 
-    public Categoria getCategoria(){
-        return Categoria.toEnum(categoria);
+    public String getImagem_url() {
+        return imagem_url;
     }
 
-    public void setCategoria(Categoria categoria){
-        this.categoria = categoria.getCod();
+    public void setImagem_url(String imagem_url) {
+        this.imagem_url = imagem_url;
+    }
+
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
     }
 
     public Set<ItemPedido> getItens() {

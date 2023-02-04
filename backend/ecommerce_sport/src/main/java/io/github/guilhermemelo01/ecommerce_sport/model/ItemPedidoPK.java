@@ -13,8 +13,7 @@ import java.util.Objects;
 public class ItemPedidoPK implements Serializable {
 
     @Serial
-    private static final long serialVersionUID = 1L;
-
+    private static final long serialVersionUID = -5409934587264491128L;
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "pedido_id")

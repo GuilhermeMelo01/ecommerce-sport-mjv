@@ -34,8 +34,8 @@ public class ProdutoController {
     }
 
     @GetMapping("/buscarCategoria")
-    public ResponseEntity<List<Produto>> buscarPorCategoria(@RequestParam Integer cod){
-        List<Produto> produtos = produtoService.buscarPorCategoria(cod);
+    public ResponseEntity<List<Produto>> buscarPorCategoria(@RequestParam Integer idCategoria){
+        List<Produto> produtos = produtoService.buscarPorCategoria(idCategoria);
         return ResponseEntity.ok().body(produtos);
     }
 

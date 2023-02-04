@@ -10,17 +10,18 @@ import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
-public class Pagamento implements Serializable {
-
-    @Serial
-    private static final long serialVersionUID = 1L;
+@Table(name = "pagamento")
+public class Pagamento {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Integer id;
 
+    @Column(name = "cod_estadoPagamento")
     private Integer estadoPagamento; //Integer pq quero apenas o cod do estadoPagamento
 
+    @Column(name = "cod_tipoPagamento")
     private Integer tipoPagamento;
 
     @JsonIgnore

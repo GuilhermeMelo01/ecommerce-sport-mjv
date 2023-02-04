@@ -11,16 +11,15 @@ import java.util.Objects;
 import java.util.Set;
 
 @Entity
-public class Pedido implements Serializable {
-
-    @Serial
-    private static final long serialVersionUID = 1L;
+public class Pedido {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Integer id;
 
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
+    @Column(name = "data_pedido")
     private LocalDateTime dataPedido;
 
     @ManyToOne

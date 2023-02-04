@@ -9,10 +9,7 @@ import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
-public class ItemPedido implements Serializable {
-
-    @Serial
-    private static final long serialVersionUID = 1L;
+public class ItemPedido {
 
     @EmbeddedId
     private ItemPedidoPK id = new ItemPedidoPK();
