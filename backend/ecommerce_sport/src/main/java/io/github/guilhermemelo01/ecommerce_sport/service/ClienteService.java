@@ -1,5 +1,6 @@
 package io.github.guilhermemelo01.ecommerce_sport.service;
 
+import io.github.guilhermemelo01.ecommerce_sport.config.SecurityConfig;
 import io.github.guilhermemelo01.ecommerce_sport.dto.AtualizarClienteDto;
 import io.github.guilhermemelo01.ecommerce_sport.dto.AtualizarClienteEnderecoDto;
 import io.github.guilhermemelo01.ecommerce_sport.dto.NovoClienteDto;
@@ -11,6 +12,8 @@ import io.github.guilhermemelo01.ecommerce_sport.repository.ClienteRepository;
 import io.github.guilhermemelo01.ecommerce_sport.service.exception.ArgumentoInvalidoException;
 import io.github.guilhermemelo01.ecommerce_sport.service.exception.PagamentoException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,18 +25,21 @@ public class ClienteService {
     @Autowired
     private ClienteRepository clienteRepository;
 
-    public Cliente buscarPorId(Integer id){
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
+
+    public Cliente buscarPorId(Integer id) {
         return clienteRepository.findById(id)
                 .orElseThrow(() -> new ArgumentoInvalidoException("Id não encotrado"));
     }
 
-    public List<Cliente> buscarTodos(){
+    public List<Cliente> buscarTodos() {
         return clienteRepository.findAll();
     }
 
     @Transactional
-    public void inserir(NovoClienteDto clienteDto){
-        Cliente cliente = new Cliente(null, clienteDto.getNome(), clienteDto.getCpf(),
+    public void inserir(NovoClienteDto clienteDto) {
+        Cliente cliente = new Cliente(null, clienteDto.getNome(),passwordEncoder.encode(clienteDto.getSenha())  , clienteDto.getCpf(),
                 clienteDto.getTelefone(), clienteDto.getEmail());
         Enderenco enderenco = new Enderenco(clienteDto.getLogradouro(), clienteDto.getCidade(),
                 clienteDto.getBairro(), clienteDto.getNumero(), clienteDto.getComplemento());
@@ -41,7 +47,7 @@ public class ClienteService {
         clienteRepository.save(cliente);
     }
 
-    public void atualizarCliente(Integer id, AtualizarClienteDto clienteDto){
+    public void atualizarCliente(Integer id, AtualizarClienteDto clienteDto) {
         Cliente cliente = buscarPorId(id);
         cliente.setNome(clienteDto.getNome());
         cliente.setTelefone(clienteDto.getTelefone());
@@ -50,7 +56,7 @@ public class ClienteService {
         clienteRepository.save(cliente);
     }
 
-    public void atualizarClienteEnderenco(Integer id, AtualizarClienteEnderecoDto clienteEnderecoDto){
+    public void atualizarClienteEnderenco(Integer id, AtualizarClienteEnderecoDto clienteEnderecoDto) {
         Cliente cliente = buscarPorId(id);
         //Cliente
         cliente.setNome(clienteEnderecoDto.getNome());
@@ -68,10 +74,8 @@ public class ClienteService {
     }
 
     public void removerPorId(Integer id) {
-            clienteRepository.deleteById(id);
+        clienteRepository.deleteById(id);
     }
-
-
 
 
 }

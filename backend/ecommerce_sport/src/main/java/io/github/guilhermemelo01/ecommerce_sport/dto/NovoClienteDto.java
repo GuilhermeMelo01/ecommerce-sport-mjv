@@ -10,6 +10,10 @@ public class NovoClienteDto {
     @Length(min = 5, max = 20, message = "O nome deve ter entre 5 e 20 caracteres")
     private String nome;
 
+    @NotBlank(message = "Campo senha não pode ser vazio")
+    @Length(min = 5, max = 20, message = "A senha deve ter entre 5 e 20 caracteres")
+    private String senha;
+
     @NotBlank(message = "Este campo não pode ser vazio")
     @Length(min = 11, max = 11, message = "O cpf deve ter 11 caracteres")
     private String cpf;
@@ -44,6 +48,14 @@ public class NovoClienteDto {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 
     public String getCpf() {

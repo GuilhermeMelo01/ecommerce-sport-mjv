@@ -19,6 +19,10 @@ public class Cliente {
     @Column(name = "nome", nullable = false)
     private String nome;
 
+    @JsonIgnore
+    @Column(name = "senha")
+    private String senha;
+
     @Column(name = "cpf", length = 11, nullable = false)
     private String cpf;
 
@@ -39,10 +43,11 @@ public class Cliente {
     public Cliente() {
     }
 
-    public Cliente(Integer id, String nome, String cpf,
+    public Cliente(Integer id, String nome, String senha, String cpf,
                    String telefone, String email) {
         this.id = id;
         this.nome = nome;
+        this.senha = senha;
         this.cpf = cpf;
         this.telefone = telefone;
         this.email = email;
@@ -73,6 +78,14 @@ public class Cliente {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 
     public String getCpf() {
