@@ -33,13 +33,14 @@ public class Cliente {
     @Column(name = "email", nullable = false)
     private String email;
 
+
+    @CollectionTable(name = "perfil")
     @ElementCollection(fetch = FetchType.EAGER)
-    @CollectionTable(name = "PERFIS")
+    @JoinColumn(name = "perfil")
     private Set<Integer> perfis = new HashSet<>();
 
     @Embedded
     private Enderenco enderenco;
-
     @JsonIgnore
     @OneToMany(mappedBy = "cliente")
     private List<Pedido> pedidos = new ArrayList<>();

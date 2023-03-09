@@ -8,31 +8,34 @@ public enum Perfil {
     private final Integer cod;
     private final String descricao;
 
-    Perfil(Integer cod, String descricao) {
+    Perfil(Integer cod, String descricao){
         this.cod = cod;
         this.descricao = descricao;
     }
 
-    public Integer getCod() {
-        return cod;
+    public Integer getCod(){
+        return this.cod;
     }
-
-    public String getDescricao() {
-        return descricao;
+    public String getDescricao(){
+        return this.descricao;
     }
 
     public static Perfil toEnum(Integer cod){
-        if (cod == null) {
+
+        if (cod == null){
             return null;
         }
 
-        for (Perfil perfil: Perfil.values()){
-            if (cod.equals(perfil.getCod())){
+        for(Perfil perfil: Perfil.values()){
+            if(perfil.getCod().equals(cod)){
                 return perfil;
             }
         }
 
-        throw new IllegalArgumentException("Valor inválido!  "+ cod);
+        throw new IllegalArgumentException("Valor invalido "+ cod);
+
     }
+
+
 
 }
