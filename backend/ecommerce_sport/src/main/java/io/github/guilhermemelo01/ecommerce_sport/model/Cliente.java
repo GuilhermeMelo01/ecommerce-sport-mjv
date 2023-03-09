@@ -1,12 +1,12 @@
 package io.github.guilhermemelo01.ecommerce_sport.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.github.guilhermemelo01.ecommerce_sport.enums.Perfil;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "cliente")
@@ -33,6 +33,10 @@ public class Cliente {
     @Column(name = "email", nullable = false)
     private String email;
 
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "PERFIS")
+    private Set<Integer> perfis = new HashSet<>();
+
     @Embedded
     private Enderenco enderenco;
 
@@ -41,6 +45,7 @@ public class Cliente {
     private List<Pedido> pedidos = new ArrayList<>();
 
     public Cliente() {
+        addPerfil(Perfil.CLIENTE);
     }
 
     public Cliente(Integer id, String nome, String senha, String cpf,
@@ -51,6 +56,7 @@ public class Cliente {
         this.cpf = cpf;
         this.telefone = telefone;
         this.email = email;
+        addPerfil(Perfil.CLIENTE);
     }
 
     public Cliente(Integer id, String nome, String cpf,
@@ -60,6 +66,7 @@ public class Cliente {
         this.cpf = cpf;
         this.telefone = telefone;
         this.email = email;
+        addPerfil(Perfil.CLIENTE);
         this.enderenco = enderenco;
         this.pedidos = pedidos;
     }
@@ -110,6 +117,13 @@ public class Cliente {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Set<Perfil> getPerfis(){
+        return perfis.stream().map(Perfil::toEnum).collect(Collectors.toSet());
+    }
+    public void addPerfil(Perfil perfil){
+        this.perfis.add(perfil.getCod());
     }
 
     public Enderenco getEnderenco() {
