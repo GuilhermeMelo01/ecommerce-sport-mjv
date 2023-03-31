@@ -2,47 +2,43 @@ package io.github.guilhermemelo01.ecommerce_sport.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import javax.persistence.EmbeddedId;
-import javax.persistence.Entity;
+import javax.persistence.*;
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
+<<<<<<< HEAD
+@Table(name = "item_pedido")
+public class ItemPedido implements Serializable {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Long id;
+    @Column(name = "quantidade")
+=======
 public class ItemPedido {
 
     @EmbeddedId
     private ItemPedidoPK id = new ItemPedidoPK();
 
+>>>>>>> master
     private Integer quantidade;
+    @Column(name = "preco")
     private Double preco;
+    @Column(name = "produto_id")
+    private Long produtoId;
+    @ManyToOne
+    @JoinColumn(name = "pedido_id", nullable = false)
+    private Pedido pedido;
 
-    public ItemPedido() {
+    public Long getId() {
+        return id;
     }
 
-    public ItemPedido(Pedido pedido, Produto produto, Integer quantidade, Double preco) {
-        id.setPedido(pedido);
-        id.setProduto(produto);
-        this.quantidade = quantidade;
-        this.preco = preco;
-    }
-
-    @JsonIgnore
-    public Pedido getPedido() {
-        return id.getPedido();
-    }
-
-    public void setPedido(Pedido pedido) {
-        id.setPedido(pedido);
-    }
-
-    @JsonIgnore
-    public Produto getProduto() {
-        return id.getProduto();
-    }
-
-    public void setProduto(Produto produto) {
-        id.setProduto(produto);
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Integer getQuantidade() {
@@ -61,16 +57,20 @@ public class ItemPedido {
         this.preco = preco;
     }
 
-    public double getSubTotal(){
-        return (preco * quantidade);
+    public Long getProdutoId() {
+        return produtoId;
     }
 
-    public ItemPedidoPK getId() {
-        return id;
+    public void setProdutoId(Long produtoId) {
+        this.produtoId = produtoId;
     }
 
-    public void setId(ItemPedidoPK id) {
-        this.id = id;
+    public Pedido getPedido() {
+        return pedido;
+    }
+
+    public void setPedido(Pedido pedido) {
+        this.pedido = pedido;
     }
 
     @Override

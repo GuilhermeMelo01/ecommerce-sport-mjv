@@ -1,26 +1,52 @@
 package io.github.guilhermemelo01.ecommerce_sport.model;
 
+<<<<<<< HEAD
+import javax.persistence.*;
+=======
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.HashSet;
+>>>>>>> master
 import java.util.Objects;
-import java.util.Set;
 
 @Entity
+<<<<<<< HEAD
+@Table(name = "produto")
+=======
+>>>>>>> master
 public class Produto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
+<<<<<<< HEAD
+    private Long id;
+
+    @Column(name = "nome")
+    private String nome;
+
+=======
     private Integer id;
     @Column(name = "nome")
     private String nome;
+>>>>>>> master
     @Column(name = "preco")
     private Double preco;
     @Column(name = "imagem_url")
     private String imagem_url;
 
+<<<<<<< HEAD
+    @Column(name = "descricao")
+    private String descrição;
+
+    @Column(name = "unidades_stock")
+    private Integer unidadesNoStock;
+
+    @ManyToOne
+    @JoinColumn(name = "categoria_id", nullable = false)
+    private Categoria categoria;
+=======
     @ManyToOne
     @JoinColumn(name = "categoria_id")
     private Categoria categoria;
@@ -85,6 +111,7 @@ public class Produto {
     public void setItens(Set<ItemPedido> itens) {
         this.itens = itens;
     }
+>>>>>>> master
 
     @Override
     public boolean equals(Object o) {

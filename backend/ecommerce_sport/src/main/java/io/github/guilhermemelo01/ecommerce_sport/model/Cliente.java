@@ -8,17 +8,33 @@ import javax.validation.constraints.Email;
 import java.util.*;
 import java.util.stream.Collectors;
 
+<<<<<<< HEAD
+
+@Entity
+@Table(name = "cliente")
+public class Cliente implements Serializable {
+=======
 @Entity
 @Table(name = "cliente")
 public class Cliente {
+>>>>>>> master
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    @Column(name = "id")
+    private Long id;
 
     @Column(name = "nome", nullable = false)
     private String nome;
 
+<<<<<<< HEAD
+    @Column(name = "cpf", length = 11, nullable = false)
+    private String cpf;
+
+    @Column(name = "telefone")
+    private String telefone;
+
+=======
     @JsonIgnore
     @Column(name = "senha")
     private String senha;
@@ -30,6 +46,7 @@ public class Cliente {
     private String telefone;
 
     @Email
+>>>>>>> master
     @Column(name = "email", nullable = false)
     private String email;
 
@@ -45,6 +62,9 @@ public class Cliente {
     @OneToMany(mappedBy = "cliente")
     private List<Pedido> pedidos = new ArrayList<>();
 
+<<<<<<< HEAD
+    public Long getId() {
+=======
     public Cliente() {
         addPerfil(Perfil.CLIENTE);
     }
@@ -73,10 +93,11 @@ public class Cliente {
     }
 
     public Integer getId() {
+>>>>>>> master
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -137,6 +158,10 @@ public class Cliente {
 
     public List<Pedido> getPedidos() {
         return pedidos;
+    }
+
+    public void setPedidos(List<Pedido> pedidos) {
+        this.pedidos = pedidos;
     }
 
     @Override

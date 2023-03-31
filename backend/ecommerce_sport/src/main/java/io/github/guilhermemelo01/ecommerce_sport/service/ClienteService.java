@@ -37,6 +37,17 @@ public class ClienteService {
         return clienteRepository.findAll();
     }
 
+<<<<<<< HEAD
+//    @Transactional
+//    public void inserir(NovoClienteDto clienteDto){
+//        Cliente cliente = new Cliente(null, clienteDto.getNome(), clienteDto.getCpf(),
+//                clienteDto.getTelefone(), clienteDto.getEmail());
+//        Enderenco enderenco = new Enderenco(clienteDto.getLogradouro(), clienteDto.getCidade(),
+//                clienteDto.getBairro(), clienteDto.getNumero(), clienteDto.getComplemento());
+//        cliente.setEnderenco(enderenco);
+//        clienteRepository.save(cliente);
+//    }
+=======
     @Transactional
     public void inserir(NovoClienteDto clienteDto) {
         Cliente cliente = new Cliente(null, clienteDto.getNome(),passwordEncoder.encode(clienteDto.getSenha())  , clienteDto.getCpf(),
@@ -46,6 +57,7 @@ public class ClienteService {
         cliente.setEnderenco(enderenco);
         clienteRepository.save(cliente);
     }
+>>>>>>> master
 
     public void atualizarCliente(Integer id, AtualizarClienteDto clienteDto) {
         Cliente cliente = buscarPorId(id);

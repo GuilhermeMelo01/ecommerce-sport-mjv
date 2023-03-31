@@ -15,6 +15,14 @@ public class Pagamento {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+<<<<<<< HEAD
+    private Long id;
+
+    @Column(name = "estado_pagamento_id")
+    private Integer estadoPagamento; //Integer pq quero apenas o cod do estadoPagamento
+
+    @Column(name = "tipo_pagamento_id")
+=======
     @Column(name = "id")
     private Integer id;
 
@@ -22,6 +30,7 @@ public class Pagamento {
     private Integer estadoPagamento; //Integer pq quero apenas o cod do estadoPagamento
 
     @Column(name = "cod_tipoPagamento")
+>>>>>>> master
     private Integer tipoPagamento;
 
     @JsonIgnore
@@ -31,17 +40,11 @@ public class Pagamento {
     public Pagamento() {
     }
 
-    public Pagamento(Integer id, EstadoPagamento estadoPagamento, TipoPagamento tipoPagamento) {
-        this.id = id;
-        this.estadoPagamento = (estadoPagamento == null) ? null : estadoPagamento.getCod();
-        this.tipoPagamento =  (tipoPagamento == null) ? null : tipoPagamento.getCod();
-    }
-
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

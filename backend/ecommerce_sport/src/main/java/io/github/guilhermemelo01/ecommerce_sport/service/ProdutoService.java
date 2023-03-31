@@ -1,6 +1,9 @@
 package io.github.guilhermemelo01.ecommerce_sport.service;
 
+<<<<<<< HEAD
+=======
 import io.github.guilhermemelo01.ecommerce_sport.model.Categoria;
+>>>>>>> master
 import io.github.guilhermemelo01.ecommerce_sport.model.Produto;
 import io.github.guilhermemelo01.ecommerce_sport.repository.CategoriaRespository;
 import io.github.guilhermemelo01.ecommerce_sport.repository.ProdutoRepository;
@@ -30,10 +33,13 @@ public class ProdutoService {
         return produtoRepository.findByPrecoLessThan(preco);
     }
 
+<<<<<<< HEAD
+=======
     public List<Produto> buscarPorCategoria(Integer idCategoria) {
         Categoria categoria = categoriaRepository.findById(idCategoria).orElseThrow();
         return categoria.getProdutos();
     }
 
 
+>>>>>>> master
 }

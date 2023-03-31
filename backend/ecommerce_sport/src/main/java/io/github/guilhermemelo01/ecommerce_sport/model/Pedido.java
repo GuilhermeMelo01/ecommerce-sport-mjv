@@ -1,6 +1,7 @@
 package io.github.guilhermemelo01.ecommerce_sport.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.io.Serial;
@@ -11,15 +12,26 @@ import java.util.Objects;
 import java.util.Set;
 
 @Entity
+<<<<<<< HEAD
+@Table(name = "pedido")
+=======
+>>>>>>> master
 public class Pedido {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
+<<<<<<< HEAD
+    private Long id;
+
+    @Column(name = "data_pedido")
+    @CreationTimestamp
+=======
     private Integer id;
 
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
     @Column(name = "data_pedido")
+>>>>>>> master
     private LocalDateTime dataPedido;
 
     @ManyToOne
@@ -30,73 +42,17 @@ public class Pedido {
     @JoinColumn(name = "pagamento_id")
     private Pagamento pagamento;
 
-    @OneToMany(mappedBy = "id.pedido", cascade = CascadeType.ALL)
-    private Set<ItemPedido> itens = new HashSet<>();
+    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
+    private Set<ItemPedido> itemPedidos = new HashSet<>();
 
-    public Pedido() {
-    }
-
-    public Pedido(Integer id, LocalDateTime dataPedido, Cliente cliente, Pagamento pagamento) {
-        this.id = id;
-        this.dataPedido = dataPedido;
-        this.cliente = cliente;
-        this.pagamento = pagamento;
-    }
-
-    public Pedido(Integer id, LocalDateTime dataPedido, Cliente cliente, Pagamento pagamento, Set<ItemPedido> itens) {
-        this.id = id;
-        this.dataPedido = dataPedido;
-        this.cliente = cliente;
-        this.pagamento = pagamento;
-        this.itens = itens;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public LocalDateTime getDataPedido() {
-        return dataPedido;
-    }
-
-    public void setDataPedido(LocalDateTime dataPedido) {
-        this.dataPedido = dataPedido;
-    }
-
-    public Cliente getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
-    }
-
-    public Pagamento getPagamento() {
-        return pagamento;
-    }
-
-    public void setPagamento(Pagamento pagamento) {
-        this.pagamento = pagamento;
-    }
-
-    public Set<ItemPedido> getItens() {
-        return itens;
-    }
-
-    public void setItens(Set<ItemPedido> itens) {
-        this.itens = itens;
-    }
-
-    public double getValorTotal() {
-        double soma = 0;
-        for (ItemPedido ip : itens) {
-            soma += ip.getSubTotal();
+    public void add(ItemPedido itemPedido){
+        if(itemPedido != null){
+            if(this.itemPedidos == null){
+                this.itemPedidos = new HashSet<>();
+            }
+            itemPedidos.add(itemPedido);
+            itemPedido.setPedido(this);
         }
-        return soma;
     }
 
     @Override
