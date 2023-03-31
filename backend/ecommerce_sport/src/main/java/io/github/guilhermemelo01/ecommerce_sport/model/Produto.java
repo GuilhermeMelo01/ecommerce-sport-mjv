@@ -1,84 +1,32 @@
 package io.github.guilhermemelo01.ecommerce_sport.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.github.guilhermemelo01.ecommerce_sport.enums.Categoria;
-
 import javax.persistence.*;
-import java.io.Serial;
-import java.io.Serializable;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
 
 @Entity
-public class Produto implements Serializable {
-
-    @Serial
-    private static final long serialVersionUID = 1L;
+@Table(name = "produto")
+public class Produto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    @Column(name = "id")
+    private Long id;
 
+    @Column(name = "nome")
     private String nome;
 
+    @Column(name = "preco")
     private Double preco;
 
-    private Integer categoria; //Quero apenas o cod da categoria
+    @Column(name = "descricao")
+    private String descrição;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "id.produto")
-    private Set<ItemPedido> itens = new HashSet<>();
+    @Column(name = "unidades_stock")
+    private Integer unidadesNoStock;
 
-    public Produto() {
-    }
-
-    public Produto(Integer id, String nome, Double preco, Categoria categoria) {
-        this.id = id;
-        this.nome = nome;
-        this.preco = preco;
-        this.categoria = (categoria == null) ? null : categoria.getCod();
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public Double getPreco() {
-        return preco;
-    }
-
-    public void setPreco(Double preco) {
-        this.preco = preco;
-    }
-
-    public Categoria getCategoria(){
-        return Categoria.toEnum(categoria);
-    }
-
-    public void setCategoria(Categoria categoria){
-        this.categoria = categoria.getCod();
-    }
-
-    public Set<ItemPedido> getItens() {
-        return itens;
-    }
-
-    public void setItens(Set<ItemPedido> itens) {
-        this.itens = itens;
-    }
+    @ManyToOne
+    @JoinColumn(name = "categoria_id", nullable = false)
+    private Categoria categoria;
 
     @Override
     public boolean equals(Object o) {

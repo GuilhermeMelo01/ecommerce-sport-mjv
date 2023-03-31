@@ -6,10 +6,7 @@ import java.io.Serial;
 import java.io.Serializable;
 
 @Embeddable
-public class Enderenco implements Serializable {
-
-    @Serial
-    private static final long serialVersionUID = 1L;
+public class Enderenco {
 
     @Column(name = "end_logradouro", length = 50, nullable = false)
     private String logradouro;
@@ -21,17 +18,6 @@ public class Enderenco implements Serializable {
     private String numero;
     @Column(name = "end_complemento", length = 50)
     private String complemento;
-
-    public Enderenco() {
-    }
-
-    public Enderenco(String logradouro, String cidade, String bairro, String numero, String complemento) {
-        this.logradouro = logradouro;
-        this.cidade = cidade;
-        this.bairro = bairro;
-        this.numero = numero;
-        this.complemento = complemento;
-    }
 
     public String getLogradouro() {
         return logradouro;
@@ -72,6 +58,4 @@ public class Enderenco implements Serializable {
     public void setComplemento(String complemento) {
         this.complemento = complemento;
     }
-
-
 }

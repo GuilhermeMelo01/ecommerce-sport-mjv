@@ -9,25 +9,26 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-@Entity
-public class Cliente implements Serializable {
 
-    @Serial
-    private static final long serialVersionUID = 1L;
+@Entity
+@Table(name = "cliente")
+public class Cliente implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    @Column(name = "id")
+    private Long id;
 
-    @Column(nullable = false)
+    @Column(name = "nome", nullable = false)
     private String nome;
 
-    @Column(length = 11, nullable = false)
+    @Column(name = "cpf", length = 11, nullable = false)
     private String cpf;
 
+    @Column(name = "telefone")
     private String telefone;
 
-    @Column(nullable = false)
+    @Column(name = "email", nullable = false)
     private String email;
 
     @Embedded
@@ -37,34 +38,11 @@ public class Cliente implements Serializable {
     @OneToMany(mappedBy = "cliente")
     private List<Pedido> pedidos = new ArrayList<>();
 
-    public Cliente() {
-    }
-
-    public Cliente(Integer id, String nome, String cpf,
-                   String telefone, String email) {
-        this.id = id;
-        this.nome = nome;
-        this.cpf = cpf;
-        this.telefone = telefone;
-        this.email = email;
-    }
-
-    public Cliente(Integer id, String nome, String cpf,
-                   String telefone, String email, Enderenco enderenco, List<Pedido> pedidos) {
-        this.id = id;
-        this.nome = nome;
-        this.cpf = cpf;
-        this.telefone = telefone;
-        this.email = email;
-        this.enderenco = enderenco;
-        this.pedidos = pedidos;
-    }
-
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -110,6 +88,10 @@ public class Cliente implements Serializable {
 
     public List<Pedido> getPedidos() {
         return pedidos;
+    }
+
+    public void setPedidos(List<Pedido> pedidos) {
+        this.pedidos = pedidos;
     }
 
     @Override
