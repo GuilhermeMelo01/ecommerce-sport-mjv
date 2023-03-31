@@ -15,12 +15,22 @@ public class Pagamento {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+<<<<<<< HEAD
     private Long id;
 
     @Column(name = "estado_pagamento_id")
     private Integer estadoPagamento; //Integer pq quero apenas o cod do estadoPagamento
 
     @Column(name = "tipo_pagamento_id")
+=======
+    @Column(name = "id")
+    private Integer id;
+
+    @Column(name = "cod_estadoPagamento")
+    private Integer estadoPagamento; //Integer pq quero apenas o cod do estadoPagamento
+
+    @Column(name = "cod_tipoPagamento")
+>>>>>>> master
     private Integer tipoPagamento;
 
     @JsonIgnore

@@ -8,6 +8,7 @@ import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
+<<<<<<< HEAD
 @Table(name = "item_pedido")
 public class ItemPedido implements Serializable {
 
@@ -16,6 +17,13 @@ public class ItemPedido implements Serializable {
     @Column(name = "id")
     private Long id;
     @Column(name = "quantidade")
+=======
+public class ItemPedido {
+
+    @EmbeddedId
+    private ItemPedidoPK id = new ItemPedidoPK();
+
+>>>>>>> master
     private Integer quantidade;
     @Column(name = "preco")
     private Double preco;

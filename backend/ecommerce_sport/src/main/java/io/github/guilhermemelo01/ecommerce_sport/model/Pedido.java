@@ -12,16 +12,26 @@ import java.util.Objects;
 import java.util.Set;
 
 @Entity
+<<<<<<< HEAD
 @Table(name = "pedido")
+=======
+>>>>>>> master
 public class Pedido {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
+<<<<<<< HEAD
     private Long id;
 
     @Column(name = "data_pedido")
     @CreationTimestamp
+=======
+    private Integer id;
+
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
+    @Column(name = "data_pedido")
+>>>>>>> master
     private LocalDateTime dataPedido;
 
     @ManyToOne
