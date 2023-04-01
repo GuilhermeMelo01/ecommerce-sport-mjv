@@ -17,37 +17,6 @@ A Arquitetura do nosso projeto funciona da seguinte forma:
 | repository | Interfaces para persistências de dados com base no Spring Data JPA |
 |  service   | Classes contendo todas as regras de negócio da aplicação     |
 
-## @Embeddable & @Embedded & @EmbeddedId
-
-Caso 1: Tenho a classe **Cliente** que vai ter uma composição com a classe **Endereco**.
-
-Mas no meu caso eu não quero criar duas tabelas para o meu banco de dados, então vou compor 
-
-a minha Classe Cliente com os atributos da classe Enderenço utilizando as anotações **@Embeddable** e
-
-**@Embedded** do JPA. 
-
-- Cliente
-  - o atributo enderenco recebe a anotação @Embedded
-
-- Enderenco
-  - A classe vai receber a anotação @Embeddable
-
-
-
-Caso 2: Tenho a classe **ItemPedido** que vai ter uma _chave primaria composta_ a partir do **ItemPedidoPK**. 
-
-Dentro da minha classe ItemPedido eu vou ter um atributo da classe ItemPedidoPK que será anotada com 
-
-**@EmbeddeId** e que tera os atributos do meu id composto, no meu caso o pedido e produto.
-
--  ItemPedido
-  - o atributo itemPedidoPK recebe a anotação @EmbeddeId
-- ItemPedidoPK
-  - a classe ItemPedidoPK recebe a anotação @Embeddable
-
-
-
 # Demonstração
 
 A empresa MJV está querendo entrar para a área de vendas esportivas e solicitou para a nossa empresa de tecnologia o desenvolvimento de um e-commerce para vendas de produtos online. Foi alertado pela MJV a  importância inicial de disponibilizar cadastro de clientes, enderenço de entrega, a compra de produtos e a forma de pagamento.
