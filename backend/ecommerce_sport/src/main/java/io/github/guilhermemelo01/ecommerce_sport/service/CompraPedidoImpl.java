@@ -3,7 +3,7 @@ package io.github.guilhermemelo01.ecommerce_sport.service;
 import io.github.guilhermemelo01.ecommerce_sport.dto.CompraDto;
 import io.github.guilhermemelo01.ecommerce_sport.dto.RespostaCompraDto;
 import io.github.guilhermemelo01.ecommerce_sport.model.Cliente;
-import io.github.guilhermemelo01.ecommerce_sport.model.Enderenco;
+import io.github.guilhermemelo01.ecommerce_sport.model.Endereco;
 import io.github.guilhermemelo01.ecommerce_sport.model.ItemPedido;
 import io.github.guilhermemelo01.ecommerce_sport.model.Pedido;
 import io.github.guilhermemelo01.ecommerce_sport.repository.ClienteRepository;
@@ -42,8 +42,8 @@ public class CompraPedidoImpl implements CompraPedido {
         clienteRepository.save(cliente);
 
         //Colocar o enderenço no pedido
-        Enderenco enderenco = compraDto.getCliente().getEnderenco();
-        pedido.getCliente().setEnderenco(enderenco);
+//        Endereco endereco = compraDto.getCliente().getEnderenco();
+//        pedido.getCliente().setEnderenco(endereco);
 
         //Persistir no banco de dados
         clienteRepository.save(cliente);

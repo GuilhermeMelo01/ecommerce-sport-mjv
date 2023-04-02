@@ -29,8 +29,9 @@ public class Cliente {
     @Column(name = "email", nullable = false)
     private String email;
 
-    @Embedded
-    private Enderenco enderenco;
+    @ManyToOne
+    @JoinColumn(name = "cliente_id")
+    private Endereco endereco;
     @JsonIgnore
     @OneToMany(mappedBy = "cliente")
     private List<Pedido> pedidos = new ArrayList<>();
@@ -75,12 +76,12 @@ public class Cliente {
         this.email = email;
     }
 
-    public Enderenco getEnderenco() {
-        return enderenco;
+    public Endereco getEndereco() {
+        return endereco;
     }
 
-    public void setEnderenco(Enderenco enderenco) {
-        this.enderenco = enderenco;
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
     }
 
     public List<Pedido> getPedidos() {

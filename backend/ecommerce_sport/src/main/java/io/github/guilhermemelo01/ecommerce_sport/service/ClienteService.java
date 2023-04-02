@@ -44,22 +44,22 @@ public class ClienteService {
         clienteRepository.save(cliente);
     }
 
-    public void atualizarClienteEnderenco(Integer id, AtualizarClienteEnderecoDto clienteEnderecoDto) {
-        Cliente cliente = buscarPorId(id);
-        //Cliente
-        cliente.setNome(clienteEnderecoDto.getNome());
-        cliente.setCpf(clienteEnderecoDto.getCpf());
-        cliente.setTelefone(clienteEnderecoDto.getTelefone());
-        cliente.setEmail(clienteEnderecoDto.getEmail());
-        //Enderenco
-        cliente.getEnderenco().setLogradouro(clienteEnderecoDto.getLogradouro());
-        cliente.getEnderenco().setCidade(clienteEnderecoDto.getCidade());
-        cliente.getEnderenco().setBairro(clienteEnderecoDto.getBairro());
-        cliente.getEnderenco().setNumero(clienteEnderecoDto.getNumero());
-        cliente.getEnderenco().setComplemento(clienteEnderecoDto.getComplemento());
-
-        clienteRepository.save(cliente);
-    }
+//    public void atualizarClienteEnderenco(Integer id, AtualizarClienteEnderecoDto clienteEnderecoDto) {
+//        Cliente cliente = buscarPorId(id);
+//        //Cliente
+//        cliente.setNome(clienteEnderecoDto.getNome());
+//        cliente.setCpf(clienteEnderecoDto.getCpf());
+//        cliente.setTelefone(clienteEnderecoDto.getTelefone());
+//        cliente.setEmail(clienteEnderecoDto.getEmail());
+//        //Enderenco
+//        cliente.getEnderenco().setLogradouro(clienteEnderecoDto.getLogradouro());
+//        cliente.getEnderenco().setCidade(clienteEnderecoDto.getCidade());
+//        cliente.getEnderenco().setBairro(clienteEnderecoDto.getBairro());
+//        cliente.getEnderenco().setNumero(clienteEnderecoDto.getNumero());
+//        cliente.getEnderenco().setComplemento(clienteEnderecoDto.getComplemento());
+//
+//        clienteRepository.save(cliente);
+//    }
 
     public void removerPorId(Integer id) {
         clienteRepository.deleteById(id);

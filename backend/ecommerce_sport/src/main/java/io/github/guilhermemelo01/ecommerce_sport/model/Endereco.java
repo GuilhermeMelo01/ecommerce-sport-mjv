@@ -1,23 +1,38 @@
 package io.github.guilhermemelo01.ecommerce_sport.model;
 
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
-import java.io.Serial;
-import java.io.Serializable;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
-@Embeddable
-public class Enderenco {
+@Entity
+@Table(name = "endereco")
+public class Endereco {
 
-    @Column(name = "end_logradouro", length = 50, nullable = false)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Long id;
+    @Column(name = "logradouro", length = 50, nullable = false)
     private String logradouro;
-    @Column(name = "end_cidade", length = 30, nullable = false)
+    @Column(name = "cidade", length = 30, nullable = false)
     private String cidade;
-    @Column(name = "end_bairro", length = 30, nullable = false)
+    @Column(name = "bairro", length = 30, nullable = false)
     private String bairro;
-    @Column(name = "end_numero", length = 10, nullable = false)
+    @Column(name = "numero", length = 10, nullable = false)
     private String numero;
-    @Column(name = "end_complemento", length = 50)
+    @Column(name = "complemento", length = 50)
     private String complemento;
+
+    @OneToMany(mappedBy = "endereco")
+    private List<Cliente> clientes = new ArrayList<>();
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getLogradouro() {
         return logradouro;
@@ -57,5 +72,13 @@ public class Enderenco {
 
     public void setComplemento(String complemento) {
         this.complemento = complemento;
+    }
+
+    public List<Cliente> getClientes() {
+        return clientes;
+    }
+
+    public void setClientes(List<Cliente> clientes) {
+        this.clientes = clientes;
     }
 }

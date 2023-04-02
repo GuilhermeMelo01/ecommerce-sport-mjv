@@ -45,12 +45,12 @@ public class ClienteController {
         return ResponseEntity.noContent().build();
     }
 
-    @PutMapping("/atualizar/{id}")
-    public ResponseEntity<Void> atualizar(@PathVariable Integer id,
-                                          @Valid @RequestBody AtualizarClienteEnderecoDto clienteEnderecoDto){
-        clienteService.atualizarClienteEnderenco(id, clienteEnderecoDto);
-        return ResponseEntity.noContent().build();
-    }
+//    @PutMapping("/atualizar/{id}")
+//    public ResponseEntity<Void> atualizar(@PathVariable Integer id,
+//                                          @Valid @RequestBody AtualizarClienteEnderecoDto clienteEnderecoDto){
+//        clienteService.atualizarClienteEnderenco(id, clienteEnderecoDto);
+//        return ResponseEntity.noContent().build();
+//    }
 
     @DeleteMapping("remover/{id}")
     public ResponseEntity<Void> remover(@PathVariable Integer id){
