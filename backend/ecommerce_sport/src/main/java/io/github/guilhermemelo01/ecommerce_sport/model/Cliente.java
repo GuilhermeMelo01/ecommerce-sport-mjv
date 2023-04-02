@@ -14,22 +14,21 @@ import java.util.*;
 @Setter
 @Table(name = "cliente")
 public class Cliente {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
-    @Column(name = "nome", nullable = false)
+    @Column(name = "nome")
     private String nome;
-    @Column(name = "cpf", length = 11, nullable = false)
+    @Column(name = "cpf")
     private String cpf;
-    @Column(name = "telefone", length = 11)
+    @Column(name = "telefone")
     private String telefone;
     @Email
-    @Column(name = "email", nullable = false)
+    @Column(name = "email")
     private String email;
     @ManyToOne
-    @JoinColumn(name = "cliente_id")
+    @JoinColumn(name = "endereco_id")
     private Endereco endereco;
     @JsonIgnore
     @OneToMany(mappedBy = "cliente")

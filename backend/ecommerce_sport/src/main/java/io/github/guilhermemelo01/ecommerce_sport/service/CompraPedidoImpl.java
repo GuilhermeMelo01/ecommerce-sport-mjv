@@ -36,14 +36,12 @@ public class CompraPedidoImpl implements CompraPedido {
         Set<ItemPedido> itens = compraDto.getItens();
         itens.forEach(pedido::add);
 
+        //Colocar o enderenço no pedido
+        pedido.setEndereco(compraDto.getEndereco());
+
         //Colocar o para pedido para o cliente
         Cliente cliente = compraDto.getCliente();
         pedido.setCliente(cliente);
-        clienteRepository.save(cliente);
-
-        //Colocar o enderenço no pedido
-//        Endereco endereco = compraDto.getCliente().getEnderenco();
-//        pedido.getCliente().setEnderenco(endereco);
 
         //Persistir no banco de dados
         clienteRepository.save(cliente);

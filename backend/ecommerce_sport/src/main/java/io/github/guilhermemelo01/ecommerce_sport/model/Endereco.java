@@ -17,17 +17,18 @@ public class Endereco {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
-    @Column(name = "logradouro", length = 50, nullable = false)
+    @Column(name = "logradouro")
     private String logradouro;
-    @Column(name = "cidade", length = 30, nullable = false)
+    @Column(name = "cidade")
     private String cidade;
-    @Column(name = "bairro", length = 30, nullable = false)
+    @Column(name = "bairro")
     private String bairro;
-    @Column(name = "numero", length = 10, nullable = false)
+    @Column(name = "numero")
     private String numero;
-    @Column(name = "complemento", length = 50)
+    @Column(name = "complemento")
     private String complemento;
-
+    @OneToOne(mappedBy = "endereco")
+    private Pedido pedido;
     @OneToMany(mappedBy = "endereco")
     private List<Cliente> clientes = new ArrayList<>();
 }
