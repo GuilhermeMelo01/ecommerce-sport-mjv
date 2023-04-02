@@ -28,7 +28,7 @@ a minha Classe Cliente com os atributos da classe Enderenço utilizando as anota
 **@Embedded** do JPA. 
 
 - Cliente
-  - o atributo enderenco recebe a anotação @Embedded
+  - o atributo endereco recebe a anotação @Embedded
 
 - Enderenco
   - A classe vai receber a anotação @Embeddable
@@ -103,7 +103,7 @@ GET:/clientes
   "cpf": "21137642025",
   "telefone": "85933445566",
   "email": "MonalisaTavares@gmail.com",
-  "enderenco": {
+  "endereco": {
     "logradouro": "Rua Celso Ribeiro",
     "cidade": "São Paulo",
     "bairro": "São Vicente",
