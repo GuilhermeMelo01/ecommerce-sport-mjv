@@ -1,46 +1,33 @@
 package io.github.guilhermemelo01.ecommerce_sport.model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
-import java.io.Serial;
-import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
 @Entity
-<<<<<<< HEAD
+
 @Table(name = "pedido")
-=======
->>>>>>> master
 public class Pedido {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-<<<<<<< HEAD
     private Long id;
+
+    @Column(name = "rastreamento_pedido")
+    private String rastreamentoPedido;
 
     @Column(name = "data_pedido")
     @CreationTimestamp
-=======
-    private Integer id;
-
-    @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
-    @Column(name = "data_pedido")
->>>>>>> master
     private LocalDateTime dataPedido;
 
     @ManyToOne
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
-
-    @OneToOne
-    @JoinColumn(name = "pagamento_id")
-    private Pagamento pagamento;
 
     @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
     private Set<ItemPedido> itemPedidos = new HashSet<>();
@@ -53,6 +40,45 @@ public class Pedido {
             itemPedidos.add(itemPedido);
             itemPedido.setPedido(this);
         }
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getRastreamentoPedido() {
+        return rastreamentoPedido;
+    }
+
+    public void setRastreamentoPedido(String rastreamentoPedido) {
+        this.rastreamentoPedido = rastreamentoPedido;
+    }
+
+    public LocalDateTime getDataPedido() {
+        return dataPedido;
+    }
+
+    public void setDataPedido(LocalDateTime dataPedido) {
+        this.dataPedido = dataPedido;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+    public Set<ItemPedido> getItemPedidos() {
+        return itemPedidos;
+    }
+
+    public void setItemPedidos(Set<ItemPedido> itemPedidos) {
+        this.itemPedidos = itemPedidos;
     }
 
     @Override

@@ -3,32 +3,24 @@ package io.github.guilhermemelo01.ecommerce_sport.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
-import java.io.Serial;
 import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
-<<<<<<< HEAD
 @Table(name = "item_pedido")
 public class ItemPedido implements Serializable {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
     @Column(name = "quantidade")
-=======
-public class ItemPedido {
-
-    @EmbeddedId
-    private ItemPedidoPK id = new ItemPedidoPK();
-
->>>>>>> master
     private Integer quantidade;
     @Column(name = "preco")
     private Double preco;
     @Column(name = "produto_id")
     private Long produtoId;
+
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "pedido_id", nullable = false)
     private Pedido pedido;
