@@ -1,6 +1,7 @@
 package io.github.guilhermemelo01.ecommerce_sport.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -33,4 +34,12 @@ public class Cliente {
     @JsonIgnore
     @OneToMany(mappedBy = "cliente")
     private List<Pedido> pedidos = new ArrayList<>();
+
+    public Cliente(String nome, String cpf, String telefone, String email, Endereco endereco) {
+        this.nome = nome;
+        this.cpf = cpf;
+        this.telefone = telefone;
+        this.email = email;
+        this.endereco = endereco;
+    }
 }

@@ -31,11 +31,11 @@ public class ClienteController {
         return ResponseEntity.ok().body(cliente);
     }
 
-//    @PostMapping
-//    public ResponseEntity<Void> inserir(@Valid @RequestBody NovoClienteDto clienteDto){
-//        clienteService.inserir(clienteDto);
-//        return ResponseEntity.noContent().build();
-//    }
+    @PostMapping
+    public ResponseEntity<Void> inserir(@RequestBody NovoClienteDto clienteDto){
+        clienteService.inserir(clienteDto);
+        return ResponseEntity.noContent().build();
+    }
 
 
     @PatchMapping("/atualizar/{id}")
