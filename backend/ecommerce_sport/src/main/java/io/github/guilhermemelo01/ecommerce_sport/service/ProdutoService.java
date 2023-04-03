@@ -1,9 +1,7 @@
 package io.github.guilhermemelo01.ecommerce_sport.service;
 
 import io.github.guilhermemelo01.ecommerce_sport.model.Produto;
-import io.github.guilhermemelo01.ecommerce_sport.repository.CategoriaRespository;
 import io.github.guilhermemelo01.ecommerce_sport.repository.ProdutoRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,10 +9,11 @@ import java.util.List;
 @Service
 public class ProdutoService {
 
-    @Autowired
-    private ProdutoRepository produtoRepository;
-    @Autowired
-    private CategoriaRespository categoriaRepository;
+    private final ProdutoRepository produtoRepository;
+
+    public ProdutoService(ProdutoRepository produtoRepository){
+        this.produtoRepository = produtoRepository;
+    }
 
     public List<Produto> buscarTodos() {
         return produtoRepository.findAll();

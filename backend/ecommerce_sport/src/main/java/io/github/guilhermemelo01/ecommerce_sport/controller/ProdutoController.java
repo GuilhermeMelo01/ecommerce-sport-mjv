@@ -12,8 +12,11 @@ import java.util.List;
 @RequestMapping(value = "/produtos")
 public class ProdutoController {
 
-    @Autowired
-    private ProdutoService produtoService;
+    private final ProdutoService produtoService;
+
+    public ProdutoController(ProdutoService produtoService){
+        this.produtoService = produtoService;
+    }
 
     @GetMapping
     public ResponseEntity<List<Produto>> buscarTodos(){

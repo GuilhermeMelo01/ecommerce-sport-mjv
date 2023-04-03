@@ -7,12 +7,10 @@ import io.github.guilhermemelo01.ecommerce_sport.model.Endereco;
 import io.github.guilhermemelo01.ecommerce_sport.model.ItemPedido;
 import io.github.guilhermemelo01.ecommerce_sport.model.Pedido;
 import io.github.guilhermemelo01.ecommerce_sport.repository.ClienteRepository;
-import io.github.guilhermemelo01.ecommerce_sport.repository.EnderecoRepository;
 import io.github.guilhermemelo01.ecommerce_sport.repository.PedidoRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
