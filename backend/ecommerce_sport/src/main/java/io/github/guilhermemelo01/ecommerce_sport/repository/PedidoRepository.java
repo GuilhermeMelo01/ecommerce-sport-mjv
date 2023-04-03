@@ -3,5 +3,5 @@ package io.github.guilhermemelo01.ecommerce_sport.repository;
 import io.github.guilhermemelo01.ecommerce_sport.model.Pedido;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface PedidoRepository extends JpaRepository<Pedido, Integer> {
+public interface PedidoRepository extends JpaRepository<Pedido, Long> {
 }

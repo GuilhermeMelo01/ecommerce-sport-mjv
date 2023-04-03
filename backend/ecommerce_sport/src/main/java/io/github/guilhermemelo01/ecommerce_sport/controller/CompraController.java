@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/pedido")
 public class CompraController {
 
-    private CompraPedidoImpl compraPedido;
+    private final CompraPedidoImpl compraPedido;
 
     public CompraController(CompraPedidoImpl compraPedido){
         this.compraPedido = compraPedido;
