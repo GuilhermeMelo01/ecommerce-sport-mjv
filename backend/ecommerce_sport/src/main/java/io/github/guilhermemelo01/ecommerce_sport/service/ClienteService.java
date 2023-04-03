@@ -16,7 +16,7 @@ public class ClienteService {
     @Autowired
     private ClienteRepository clienteRepository;
 
-    public Cliente buscarPorId(Integer id) {
+    public Cliente buscarPorId(Long id) {
         return clienteRepository.findById(id)
                 .orElseThrow(() -> new ArgumentoInvalidoException("Id não encotrado"));
     }
@@ -35,7 +35,7 @@ public class ClienteService {
 //        clienteRepository.save(cliente);
 //    }
 
-    public void atualizarCliente(Integer id, AtualizarClienteDto clienteDto) {
+    public void atualizarCliente(Long id, AtualizarClienteDto clienteDto) {
         Cliente cliente = buscarPorId(id);
         cliente.setNome(clienteDto.getNome());
         cliente.setTelefone(clienteDto.getTelefone());
@@ -61,7 +61,7 @@ public class ClienteService {
 //        clienteRepository.save(cliente);
 //    }
 
-    public void removerPorId(Integer id) {
+    public void removerPorId(Long id) {
         clienteRepository.deleteById(id);
     }
 
