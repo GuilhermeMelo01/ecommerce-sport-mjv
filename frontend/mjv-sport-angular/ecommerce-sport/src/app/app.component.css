@@ -15,12 +15,12 @@ header{
   background-color: yellow;
   grid-area: header;
   display: grid;
-  grid-template-columns: 20% 55% 25%;
+  grid-template-columns: 20% 50% 30%;
   grid-template-rows: 100vh;
 }
 
 .header-logo{
-  background-color: pink;
+  /* background-color: pink; */
   justify-items: start;
 }
 
@@ -33,36 +33,71 @@ header{
 }
 
 .header-search{
-  background-color: rgb(187, 255, 0);
+  /* background-color: rgb(187, 255, 0); */
   justify-items: center;
   display: grid;
-  grid-template-columns: 1fr 6fr;
-  grid-template-rows: 20vh 60vh 20vh;
+  grid-template-columns: 5fr 1fr;
+  grid-template-rows: 20vh 50vh 20vh;
   padding-top: 5%;
-  padding-left: 2%;
+  padding-right: 18%;
 }
 
-.header-search label{
-  width: 80%;
+.header-search button{
+  width: 90px;
   height: 40px;
   text-align: center;
   padding-top: 2px;
-  margin-left: 20%;
+  margin-right: 20px;
   font-size: 24px;
+  border-radius: 15px;
   /* background-color: blue; */
 }
 
 .header-search input{
   /* background-color: red; */
-  width: 70%;
+  width: 80%;
   height: 40px;
-  margin-right: 28%;
+  margin-left: 50px;
   border-radius: 15px;
 }
 
 .header-buy{
-  background-color: blueviolet;
+  /* background-color: blueviolet; */
   justify-items: end;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  font-size: 18px;
+  font-weight: bold;
+  padding-top: 6px;
+  text-align: center;
+}
+
+.buy-preco{
+  background-color: brown;
+  width: 80px;
+  height: 40px;
+  margin-left: 140px;
+  margin-top: 30px;
+  padding-top: 6px;
+  border-radius: 10px 0px 0px 10px;
+}
+
+.buy-quantidade{
+  background-color: green;
+  width: 50px;
+  height: 40px;
+  margin-right: 20px;
+  margin-top: 30px;
+  padding-top: 6px;
+  border-radius: 0px 10px 10px 0px;
+}
+
+.buy-carrinho{
+  /* background-color: blue; */
+  width: 35px;
+  height: 40px;
+  margin-top: 30px;
+  margin-right: 150px;
 }
 
 
