@@ -5,22 +5,22 @@
   height: 100%;
   display: grid;
   grid-template-columns: 1fr 4fr;
-  grid-template-rows: 20vh 70vh 10vh;
+  grid-template-rows: 12vh 78vh 10vh;
   grid-template-areas: "header header"
                        "aside main"
                        "footer footer";
 }
 
 header{
-  background-color: yellow;
+  background-image: linear-gradient(to bottom, #bbb, #beffbe);
   grid-area: header;
   display: grid;
-  grid-template-columns: 20% 55% 25%;
+  grid-template-columns: 20% 50% 30%;
   grid-template-rows: 100vh;
 }
 
 .header-logo{
-  background-color: pink;
+  /* background-color: pink; */
   justify-items: start;
 }
 
@@ -29,54 +29,196 @@ header{
   width: 100px;
   height: 70px;
   margin-top: 30px;
-  margin-left: 70px;
+  margin-left: 80px;
 }
 
 .header-search{
-  background-color: rgb(187, 255, 0);
+  /* background-color: rgb(187, 255, 0); */
   justify-items: center;
   display: grid;
-  grid-template-columns: 1fr 6fr;
-  grid-template-rows: 20vh 60vh 20vh;
+  grid-template-columns: 5fr 1fr;
+  grid-template-rows: 20vh 50vh 20vh;
   padding-top: 5%;
-  padding-left: 2%;
+  padding-right: 18%;
 }
 
-.header-search label{
-  width: 80%;
+.header-search button{
+  width: 90px;
   height: 40px;
   text-align: center;
   padding-top: 2px;
-  margin-left: 20%;
+  margin-right: 20px;
   font-size: 24px;
+  border-radius: 15px;
   /* background-color: blue; */
 }
 
 .header-search input{
   /* background-color: red; */
-  width: 70%;
+  width: 80%;
   height: 40px;
-  margin-right: 28%;
+  margin-left: 50px;
   border-radius: 15px;
 }
 
 .header-buy{
-  background-color: blueviolet;
+  /* background-color: blueviolet; */
   justify-items: end;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  font-size: 18px;
+  font-weight: bold;
+  padding-top: 6px;
+  text-align: center;
+}
+
+.buy-preco{
+  background-color: #2ecc71;
+  color: black;
+  width: 80px;
+  height: 40px;
+  margin-left: 180px;
+  margin-top: 35px;
+  padding-top: 6px;
+  border-radius: 10px 0px 0px 10px;
+  box-shadow: 0px 1px 1px;
+}
+
+.buy-quantidade{
+  background-color: #006400;
+  color: white;
+  width: 50px;
+  height: 40px;
+  margin-right: 30px;
+  margin-top: 35px;
+  padding-top: 6px;
+  border-radius: 0px 10px 10px 0px;
+  box-shadow: 0px 1px 1px #000;
+}
+
+.buy-carrinho{
+  /* background-color: blue; */
+  width: 35px;
+  height: 40px;
+  margin-top: 35px;
+  margin-right: 150px;
 }
 
 
 aside{
-  background-color: green;
+  background-image: linear-gradient(to bottom,#beffbe, #98ff98, #006400);
+  /* background-color: #006400; */
   grid-area: aside;
 }
 
+aside h3{
+  margin-top: 30px;
+  height: 50px;
+  text-align: center;
+  font-size: 27px;
+  color: black;
+}
+
+.aside-categorias{
+  /* background-color: pink; */
+  text-align: center;
+}
+
+.aside-categorias h4{
+    /* background-color: blue; */
+    margin-top: 30px;
+    font-size: 20px;
+}
+
+.aside-categorias a{
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+}
+
+.aside-categorias a:hover{
+  color: rgb(255, 29, 29);
+}
+
+
 main {
-  background-color: rgb(218, 31, 134);
+  background-image: linear-gradient(to bottom,#beffbe, #98ff98, #006400);
   grid-area: main;
 }
 
+main h3{
+  text-align: center;
+  font-size: 40px;
+  color: black;
+  font-weight: bold;
+  /* margin-top: 10px; */
+}
+
+.main-produtos{
+  display: grid;
+  /* background-color: rgb(53, 199, 17); */
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 35vh 35vh;
+}
+
+.main-produtos img{
+  width: 100px;
+  height: 120px;
+}
+
+.produtos{
+  color: black;
+  background-color: #2ecc71;
+  box-shadow: 1px 2px 6px #006400;
+  margin-top: 5px;
+  width: 250px;
+  height: 260px;
+  margin: 20px;
+  text-align: center;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+
+.produtos a{
+  color: black;
+  text-decoration: none;
+}
+
+.produtos h4{
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.produtos h5{
+  font-size: 15px;
+}
+
+.produtos p{
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.produtos button{
+  font-size: 20px;
+  width: 100px;
+}
+
 footer{
-  background-color: red;
+  background-color: #006400;
   grid-area: footer;
+}
+
+.footer-contatos{
+  display: grid;
+  /* background-color: blue; */
+  grid-template-columns: 1fr 1fr 1fr;
+  width: 300px;
+  margin-left: 42%;
+  margin-top: 15px;
+}
+
+.footer-contatos h5{
+  color: rgb(255, 255, 255);
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
 }
