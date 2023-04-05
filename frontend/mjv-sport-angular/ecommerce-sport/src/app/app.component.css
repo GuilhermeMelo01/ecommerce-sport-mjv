@@ -5,14 +5,14 @@
   height: 100%;
   display: grid;
   grid-template-columns: 1fr 4fr;
-  grid-template-rows: 15vh 75vh 10vh;
+  grid-template-rows: 12vh 78vh 10vh;
   grid-template-areas: "header header"
                        "aside main"
                        "footer footer";
 }
 
 header{
-  background-color: yellow;
+  background-image: linear-gradient(to bottom, #bbb, #beffbe);
   grid-area: header;
   display: grid;
   grid-template-columns: 20% 50% 30%;
@@ -29,7 +29,7 @@ header{
   width: 100px;
   height: 70px;
   margin-top: 30px;
-  margin-left: 100px;
+  margin-left: 80px;
 }
 
 .header-search{
@@ -70,27 +70,30 @@ header{
   font-weight: bold;
   padding-top: 6px;
   text-align: center;
-  color: black;
 }
 
 .buy-preco{
-  background-color: brown;
+  background-color: #2ecc71;
+  color: black;
   width: 80px;
   height: 40px;
   margin-left: 180px;
   margin-top: 35px;
   padding-top: 6px;
   border-radius: 10px 0px 0px 10px;
+  box-shadow: 0px 1px 1px;
 }
 
 .buy-quantidade{
-  background-color: green;
+  background-color: #006400;
+  color: white;
   width: 50px;
   height: 40px;
   margin-right: 30px;
   margin-top: 35px;
   padding-top: 6px;
   border-radius: 0px 10px 10px 0px;
+  box-shadow: 0px 1px 1px #000;
 }
 
 .buy-carrinho{
@@ -103,7 +106,8 @@ header{
 
 
 aside{
-  background-color: green;
+  background-image: linear-gradient(to bottom,#beffbe, #98ff98, #006400);
+  /* background-color: #006400; */
   grid-area: aside;
 }
 
@@ -137,7 +141,7 @@ aside h3{
 
 
 main {
-  background-color: rgb(218, 31, 134);
+  background-image: linear-gradient(to bottom,#beffbe, #98ff98, #006400);
   grid-area: main;
 }
 
@@ -146,7 +150,7 @@ main h3{
   font-size: 40px;
   color: black;
   font-weight: bold;
-  margin-top: 5px;
+  /* margin-top: 10px; */
 }
 
 .main-produtos{
@@ -163,7 +167,8 @@ main h3{
 
 .produtos{
   color: black;
-  background-color: rgb(26, 194, 91);
+  background-color: #2ecc71;
+  box-shadow: 1px 2px 6px #006400;
   margin-top: 5px;
   width: 250px;
   height: 260px;
@@ -171,6 +176,11 @@ main h3{
   text-align: center;
   border-radius: 10px;
   margin-top: 10px;
+}
+
+.produtos a{
+  color: black;
+  text-decoration: none;
 }
 
 .produtos h4{
@@ -192,8 +202,23 @@ main h3{
   width: 100px;
 }
 
-
 footer{
-  background-color: red;
+  background-color: #006400;
   grid-area: footer;
+}
+
+.footer-contatos{
+  display: grid;
+  /* background-color: blue; */
+  grid-template-columns: 1fr 1fr 1fr;
+  width: 300px;
+  margin-left: 42%;
+  margin-top: 15px;
+}
+
+.footer-contatos h5{
+  color: rgb(255, 255, 255);
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
 }
